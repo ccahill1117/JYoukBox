@@ -29,26 +29,31 @@ Jukebox.prototype.grabId = function(inputID) {
   return false;
 }
 
-Jukebox.prototype.playThrough = function(counter) {
+Jukebox.prototype.playThrough = function() {
   for (var i=0; i<this.queue.length; i++) {
-    if (this.queue[i].id === counter) {
+    if (this.queue[i].id === this.counter) {
       this.currentSong = [];
       this.currentSong.push(this.queue[i]);
-      this.counter += 1;
+      return this.counter += 1;
     }
   }
 }
 
 Jukebox.prototype.startPlay = function(counter) {
-  setTimeout(function() { Jukebox.prototype.playThrough(counter); }, this.currentSong.duration);
+  setTimeout(function() { jukebox.playThrough(counter); },
+  jukebox.currentSong.duration);
 }
 
 var jukebox = new Jukebox;
 var newSong = new Song;
 
-var song1 = new Song('hello',3000,1);
-var song2 = new Song('goodbye',3000,2);
-var song3 = new Song('hey',3000,3);
+var song1 = new Song('hello',30000,1);
+var song2 = new Song('goodbye',30000,2);
+var song3 = new Song('hey',30000,3);
+jukebox.addSong(song1);
+jukebox.addSong(song2);
+jukebox.addSong(song3);
+
 
 $(document).ready(function() {
   $("form#addSong").submit(function(event) {
@@ -61,8 +66,12 @@ $(document).ready(function() {
     event.preventDefault();
   })
 
+$("#playNext").click(function() {
+  jukebox.playThrough();
+  console.log(jukebox.currentSong[0].title);
+  $("div#nowPlaying").text(jukebox.currentSong[0].title);
   // $("div#displayQueue").html(currentQueue);
-  $("div#nowPlaying").text(nowPlaying);
   // $("div#history").text(queueHistory);
+})
 
 })
