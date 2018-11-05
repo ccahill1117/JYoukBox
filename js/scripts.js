@@ -39,10 +39,10 @@ Jukebox.prototype.playThrough = function() {
   }
 }
 
-Jukebox.prototype.startPlay = function(counter) {
-  setTimeout(function() { jukebox.playThrough(counter); },
-  jukebox.currentSong.duration);
-}
+// Jukebox.prototype.startPlay = function(counter) {
+//   setTimeout(function() { jukebox.playThrough(counter); },
+//   jukebox.currentSong.duration);
+// }
 
 var jukebox = new Jukebox;
 var newSong = new Song;
@@ -56,6 +56,12 @@ jukebox.addSong(song3);
 
 
 $(document).ready(function() {
+
+  $("#song1").text(jukebox.queue[0].title);
+  $("#song2").text(jukebox.queue[1].title);
+  $("#song3").text(jukebox.queue[2].title);
+
+
   $("form#addSong").submit(function(event) {
     event.preventDefault();
     var newSongTitle = $("input#title").val();
