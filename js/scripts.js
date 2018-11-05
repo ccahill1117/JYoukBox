@@ -32,10 +32,15 @@ Jukebox.prototype.grabId = function(inputID) {
 Jukebox.prototype.playThrough = function(counter) {
   for (var i=0; i<this.queue.length; i++) {
     if (this.queue[i].id === counter) {
+      this.currentSong = [];
       this.currentSong.push(this.queue[i]);
       this.counter += 1;
     }
   }
+}
+
+Jukebox.prototype.startPlay = function(counter) {
+  setTimeout(function() { Jukebox.prototype.playThrough(counter); }, this.currentSong.duration);
 }
 
 var jukebox = new Jukebox;
@@ -56,8 +61,8 @@ $(document).ready(function() {
     event.preventDefault();
   })
 
-  $("div#displayQueue").html(currentQueue);
+  // $("div#displayQueue").html(currentQueue);
   $("div#nowPlaying").text(nowPlaying);
-  $("div#history").text(queueHistory);
+  // $("div#history").text(queueHistory);
 
 })
