@@ -7,7 +7,8 @@ function Song(title, duration) {
 function Jukebox() {
   this.queue = [],
   this.queue.totalSongs = 0,
-  this.currentSong = 0
+  this.currentSong = [],
+  this.counter = 1
 }
 
 Jukebox.prototype.addSong = function(song) {
@@ -23,15 +24,29 @@ Jukebox.prototype.grabId = function(inputID) {
   for (var index=0; index< this.queue.length; index++) {
     if (this.queue[index].id == inputID) {
       return this.queue[index].title;
-
     }
   };
   return false;
 }
 
+Jukebox.prototype.playThrough = function(counter) {
+  for (var i=0; i<this.queue.length; i++) {
+    if (this.queue[i].id === counter) {
+      this.currentSong.push(this.queue[i]);
+      this.counter += 1;
+    }
+  }
+}
+
+
+
 
 var jukebox = new Jukebox;
 var newSong = new Song;
+
+var song1 = new Song('hello',3000,1);
+var song2 = new Song('goodbye',3000,2);
+var song3 = new Song('hey',3000,3);
 
 $(document).ready(function() {
   $("#inputSongs").submit(function(event){
