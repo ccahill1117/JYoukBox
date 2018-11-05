@@ -38,9 +38,6 @@ Jukebox.prototype.playThrough = function(counter) {
   }
 }
 
-
-
-
 var jukebox = new Jukebox;
 var newSong = new Song;
 
@@ -49,10 +46,18 @@ var song2 = new Song('goodbye',3000,2);
 var song3 = new Song('hey',3000,3);
 
 $(document).ready(function() {
-  $("#inputSongs").submit(function(event){
+  $("form#addSong").submit(function(event) {
     event.preventDefault();
+    var newSongTitle = $("input#title").val();
+    var newSongDuration = $("input#duration").val();
+  })
 
-    $("#queueOutput").text()
-  });
+  $("form#findSong").submit(function(event) {
+    event.preventDefault();
+  })
 
-});
+  $("div#displayQueue").html(currentQueue);
+  $("div#nowPlaying").text(nowPlaying);
+  $("div#history").text(queueHistory);
+
+})
