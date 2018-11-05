@@ -1,3 +1,5 @@
+// BUSINESS LOGIC
+
 function Song(title, duration) {
   this.title = title,
   this.duration = duration,
@@ -45,11 +47,13 @@ var song1 = new Song('hello',3000,1);
 var song2 = new Song('goodbye',3000,2);
 var song3 = new Song('hey',3000,3);
 
+// USER INTERFACE LOGIC
 $(document).ready(function() {
   $("form#addSong").submit(function(event) {
     event.preventDefault();
     var newSongTitle = $("input#title").val();
     var newSongDuration = $("input#duration").val();
+
   })
 
   $("form#findSong").submit(function(event) {
