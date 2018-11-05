@@ -1,3 +1,5 @@
+// BUSINESS LOGIC
+
 function Song(title, duration) {
   this.title = title,
   this.duration = duration,
@@ -55,6 +57,7 @@ jukebox.addSong(song2);
 jukebox.addSong(song3);
 
 
+// USER INTERFACE LOGIC
 $(document).ready(function() {
 
   $("#song1").text(jukebox.queue[0].title);
@@ -66,6 +69,7 @@ $(document).ready(function() {
     event.preventDefault();
     var newSongTitle = $("input#title").val();
     var newSongDuration = $("input#duration").val();
+
   })
 
   $("form#findSong").submit(function(event) {
