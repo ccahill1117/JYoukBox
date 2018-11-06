@@ -1,87 +1,65 @@
-// BUSINESS LOGIC
+// 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
 
-function Song(title, duration) {
-  this.title = title,
-  this.duration = duration,
-  this.id = 0
-}
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-function Jukebox() {
-  this.queue = [],
-  this.queue.totalSongs = 0,
-  this.currentSong = [],
-  this.counter = 1
-}
-
-Jukebox.prototype.addSong = function(song) {
-  this.queue.push(song);
-  song.id = this.assignId();
-}
-
-Jukebox.prototype.assignId = function() {
-  return this.queue.totalSongs += 1;
-}
-
-Jukebox.prototype.grabId = function(inputID) {
-  for (var index=0; index< this.queue.length; index++) {
-    if (this.queue[index].id == inputID) {
-      return this.queue[index].title;
-    }
-  };
-  return false;
-}
-
-Jukebox.prototype.playThrough = function() {
-
-  for (var i=0; i<this.queue.length; i++) {
-  // setTimeout(() => console.log(i), 5000
-    this.currentSong = [];
-    if (this.queue[i].id === this.counter) {
-      this.currentSong.push(this.queue[i]);
-      // setInterval(() => this.counter +=1, this.currentSong[0].duration);
-      // setTimeout(this.counter +=1, this.currentSong[0].duration);
-      return this.counter +=1;
-    }
-  }
-}
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
 
 
-var jukebox = new Jukebox;
-var newSong = new Song;
 
-var song1 = new Song('hello',5000,1);
-var song2 = new Song('goodbye',5000,2);
-var song3 = new Song('hey',5000,3);
-jukebox.addSong(song1);
-jukebox.addSong(song2);
-jukebox.addSong(song3);
+      var vidId = 'r9I4bml0SjY';
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: vidId,
+          playerVars: {'autoplay' : 0, 'controls' : 1, 'start' : 0 },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        // event.target.playVideo();
+        // comment out to NOT start at load
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          // setTimeout(stopVideo, 6000);
+          done = true;
+        }
+        if (event.data == YT.PlayerState.ENDED) {
+          console.log("ended");
+        }
+      }
+
+      function stopVideo() {
+        player.stopVideo();
+      }
 
 
-// USER INTERFACE LOGIC
+      function getTimeAndStart() {
+        player.playVideo();
+        player.getDuration();
+        var timeVid = player.getDuration();
+        return timeVid;
+      }
+
 $(document).ready(function() {
 
-  $("#song1").text(jukebox.queue[0].title);
-  $("#song2").text(jukebox.queue[1].title);
-  $("#song3").text(jukebox.queue[2].title);
 
 
-  $("form#addSong").submit(function(event) {
-    event.preventDefault();
-    var newSongTitle = $("input#title").val();
-    var newSongDuration = $("input#duration").val();
-
-  })
-
-  $("form#findSong").submit(function(event) {
-    event.preventDefault();
-  })
-
-$("#playNext").click(function() {
-  jukebox.playThrough();
-  console.log(jukebox.currentSong[0].title);
-  $("div#nowPlaying").text(jukebox.currentSong[0].title);
-  // $("div#displayQueue").html(currentQueue);
-  // $("div#history").text(queueHistory);
-})
-
-})
+});
