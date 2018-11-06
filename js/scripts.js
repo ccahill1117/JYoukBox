@@ -32,26 +32,26 @@ Jukebox.prototype.grabId = function(inputID) {
 }
 
 Jukebox.prototype.playThrough = function() {
+
   for (var i=0; i<this.queue.length; i++) {
+  // setTimeout(() => console.log(i), 5000
+    this.currentSong = [];
     if (this.queue[i].id === this.counter) {
-      this.currentSong = [];
       this.currentSong.push(this.queue[i]);
-      return this.counter += 1;
+      // setInterval(() => this.counter +=1, this.currentSong[0].duration);
+      // setTimeout(this.counter +=1, this.currentSong[0].duration);
+      return this.counter +=1;
     }
   }
 }
 
-// Jukebox.prototype.startPlay = function(counter) {
-//   setTimeout(function() { jukebox.playThrough(counter); },
-//   jukebox.currentSong.duration);
-// }
 
 var jukebox = new Jukebox;
 var newSong = new Song;
 
-var song1 = new Song('hello',30000,1);
-var song2 = new Song('goodbye',30000,2);
-var song3 = new Song('hey',30000,3);
+var song1 = new Song('hello',5000,1);
+var song2 = new Song('goodbye',5000,2);
+var song3 = new Song('hey',5000,3);
 jukebox.addSong(song1);
 jukebox.addSong(song2);
 jukebox.addSong(song3);
