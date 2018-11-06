@@ -44,7 +44,7 @@ Add songs
 
 
 ## Setup/Installation Requirements
-To view or clone the code, go to [GitHub]( ).
+To view or clone the code, go to [GitHub](https://github.com/skillitzimberg/JYoukBox).
 
 The page is live at: [GitHub]( ).
 
