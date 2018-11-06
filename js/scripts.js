@@ -53,6 +53,7 @@ Jukebox.prototype.playThrough = function() {
   return this.counter += 1;
 }
 
+
 // USER INTERFACE LOGIC
 $(document).ready(function() {
   var jukebox = new Jukebox;
