@@ -55,6 +55,10 @@ a {
   background: rgb(100, 100, 100, 0.5);
 }
 
+.navLinks {
+  cursor: pointer;
+}
+
 #display {
   grid-column: 1 / 5;
   grid-row: 2;

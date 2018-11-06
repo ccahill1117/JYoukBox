@@ -12,6 +12,18 @@ function Jukebox() {
   this.counter = 1
 }
 
+Jukebox.prototype.displayQueue = function() {
+  var htmlForQueueDisplay = "";
+  var sondId;
+  var song;
+  for (var i=0; i<this.queue.length; i++) {
+    songIdNumber = this.queue[i].id;
+    song = this.queue[i].title;
+    htmlForQueueDisplay += "<p id=" + songIdNumber + ">" + song + "</p>"
+  }
+  return htmlForQueueDisplay;
+}
+
 Jukebox.prototype.addSong = function(song) {
   debugger;
   song.id = this.assignId();
@@ -42,18 +54,6 @@ Jukebox.prototype.playThrough = function() {
   return this.counter += 1;
 }
 
-Jukebox.prototype.displayQueue = function() {
-  var htmlForQueueDisplay = "";
-  var sondId;
-  var song;
-  for (var i=0; i<this.queue.length; i++) {
-    songIdNumber = this.queue[i].id;
-    song = this.queue[i].title;
-    htmlForQueueDisplay += "<p id=" + songIdNumber + ">" + song + "</p>"
-  }
-  return htmlForQueueDisplay;
-}
-
 // Jukebox.prototype.startPlay = function(counter) {
 //   setTimeout(function() { jukebox.playThrough(counter); },
 //   jukebox.currentSong.duration);
@@ -80,6 +80,8 @@ $(document).ready(function() {
     var songDuration = parseInt($("input#duration").val());
     var song = new Song(songTitle, songDuration);
     jukebox.addSong(song);
+    $("input#songTitle").val("");
+    $("input#duration").val("");
   })
 
   $("form#findSong").submit(function(event) {
