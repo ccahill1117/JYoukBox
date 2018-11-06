@@ -36,7 +36,7 @@ Jukebox.prototype.playThrough = function() {
     if (this.queue[i].id === this.counter) {
       this.currentSong = [];
       this.currentSong.push(this.queue[i]);
-      return this.counter += 1;
+      this.counter += 1;
     }
   }
 }
@@ -57,8 +57,26 @@ jukebox.addSong(song2);
 jukebox.addSong(song3);
 
 
+
 // USER INTERFACE LOGIC
 $(document).ready(function() {
+
+  var widget = SC.Widget(document.getElementById('playing'));
+  widget.bind(SC.Widget.Events.READY, function() {
+  });
+
+  $("button#time").click(function() {
+    widget.getPosition(function(position){
+      alert(position);
+    })
+  })
+
+  $('button#duration').click(function() {
+      widget.getDuration(function(duration){
+          alert(duration);
+      });
+  });
+
 
   $("#song1").text(jukebox.queue[0].title);
   $("#song2").text(jukebox.queue[1].title);
@@ -69,19 +87,14 @@ $(document).ready(function() {
     event.preventDefault();
     var newSongTitle = $("input#title").val();
     var newSongDuration = $("input#duration").val();
-
   })
 
   $("form#findSong").submit(function(event) {
     event.preventDefault();
   })
 
-$("#playNext").click(function() {
-  jukebox.playThrough();
-  console.log(jukebox.currentSong[0].title);
-  $("div#nowPlaying").text(jukebox.currentSong[0].title);
-  // $("div#displayQueue").html(currentQueue);
-  // $("div#history").text(queueHistory);
+  $("#playNext").click(function() {
+
 })
 
 })

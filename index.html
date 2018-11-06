@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="http://w.soundcloud.com/player/api.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -23,7 +24,10 @@
       </nav>
       <div id="display">
         <div class="" id="nowPlaying">
-        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/499015278&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+          <iframe id="playing" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/523700475&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+          </iframe>
+          <button id="duration">print duration</button>
+          <button id="time">print time position</button>
         </div>
 
         <div class="" id="displayQueue">
