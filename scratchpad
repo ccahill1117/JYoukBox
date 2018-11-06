@@ -1,0 +1,20 @@
+Jukebox.prototype.playThrough = function() {
+  for (var i=0; i<this.queue.length; i++) {
+    var makeThisCurrentSong = this.queue[i];
+    console.log(makeThisCurrentSong);
+    var songId = this.queue[i].id;
+    console.log(songId);
+    var songDuration = this.queue[i].duration;
+    console.log(songDuration);
+
+      if (songId === this.counter) {
+        debugger;
+      setTimeout(function(makeThisCurrentSong) {
+          this.currentSong = makeThisCurrentSong;
+          console.log(makeThisCurrentSong);
+          console.log(songDuration);
+        }, songDuration);
+      }
+  }
+  return this.counter += 1;
+}

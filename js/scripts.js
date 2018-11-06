@@ -25,7 +25,6 @@ Jukebox.prototype.displayQueue = function() {
 }
 
 Jukebox.prototype.addSong = function(song) {
-  debugger;
   song.id = this.assignId();
   this.queue.push(song);
   var songHtml = "<p id=" + song.id + ">" + song.title + "</p>";
@@ -64,9 +63,9 @@ Jukebox.prototype.playThrough = function() {
 $(document).ready(function() {
   var jukebox = new Jukebox;
 
-  var song1 = new Song('hello',30000,1);
-  var song2 = new Song('goodbye',30000,2);
-  var song3 = new Song('hey',30000,3);
+  var song1 = new Song('hello',5000,1);
+  var song2 = new Song('goodbye',6000,2);
+  var song3 = new Song('hey',7000,3);
   jukebox.addSong(song1);
   jukebox.addSong(song2);
   jukebox.addSong(song3);
