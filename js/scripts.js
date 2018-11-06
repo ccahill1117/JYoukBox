@@ -16,7 +16,7 @@ Jukebox.prototype.addSong = function(song) {
   debugger;
   song.id = this.assignId();
   this.queue.push(song);
-  var songHtml = "<p>" + song.title + "</p>";
+  var songHtml = "<p id=" + song.id + ">" + song.title + "</p>";
   $("#displayQueue").append(songHtml);
 }
 
@@ -79,6 +79,7 @@ $(document).ready(function() {
     var songTitle = $("input#songTitle").val();
     var songDuration = parseInt($("input#duration").val());
     var song = new Song(songTitle, songDuration);
+    jukebox.addSong(song);
   })
 
   $("form#findSong").submit(function(event) {
