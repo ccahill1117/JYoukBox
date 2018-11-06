@@ -18,3 +18,29 @@ Jukebox.prototype.playThrough = function() {
   }
   return this.counter += 1;
 }
+
+----------------------
+  // debugger;
+    this.currentSong = this.queue[i];
+    console.log(this.currentSong);
+  })
+
+
+  -------------
+
+    // console.log(i);
+    var songId = this.queue[i].id;
+    // console.log(songId);
+    if (songId === this.counter) {
+      console.log("got to first If ");
+      (function theLoop (i) {
+        console.log("got to theLoop ");
+      setTimeout(function () {
+        console.log("got to setTimeout ");
+
+          if (--i) {          // If i > 0, keep going
+            theLoop(i);       // Call the loop again, and pass it the current value of i
+          }
+        }), 3000;
+      }(3)
+    }

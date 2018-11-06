@@ -8,7 +8,7 @@ function Song(title, duration) {
 function Jukebox() {
   this.queue = [],
   this.queue.totalSongs = 0,
-  this.currentSong = "",
+  this.currentSong;
   this.counter = 1
 }
 
@@ -44,25 +44,46 @@ Jukebox.prototype.grabId = function(inputID) {
   return false;
 }
 
-Jukebox.prototype.playThrough = function() {
-  for (var i=0; i<this.queue.length; i++) {
-    if (this.queue[i].id === this.counter) {
-      this.currentSong = this.queue[i];
-    }
-  }
-  return this.counter += 1;
-}
-
-// Jukebox.prototype.startPlay = function(counter) {
-//   setTimeout(function() { jukebox.playThrough(counter); },
-//   jukebox.currentSong.duration);
+// Jukebox.prototype.playThrough = function(boom) {
+//   for (var i=0; i<this.queue.length; i++) {
+//     if (this.queue[i].id === this.counter) {
+//       this.currentSong = this.queue[i];
+//     }
+//   }
+//   return this.counter += 1;
 // }
 
 
+Jukebox.prototype.startPlay = function() {
+
+  var duration = 0;
+  for (var i=0; i<this.queue.length; i++) {
+  // setTimeout(() => console.log(i), 5000
+    // if (this.queue[i].id === this.counter) {
+      this.currentSong = (this.queue[i]);
+      duration += this.queue[i].duration
+      setTimeout(() => {
+        this.currentSong = (this.queue[i]);
+        this.counter +=1
+      }, duration);
+
+      ///setTimeout(this.counter +=1, this.currentSong[0].duration);
+  // }  else if (this.counter === 3){
+  //     clearInterval(() => this.counter +=1, this.currentSong[0].duration);
+  //     return alert("work");
+  //
+  //   }
+
+      }
+    }
+
+
+
+
+var jukebox = new Jukebox;
+
 // USER INTERFACE LOGIC
 $(document).ready(function() {
-  var jukebox = new Jukebox;
-
   var song1 = new Song('hello',5000,1);
   var song2 = new Song('goodbye',6000,2);
   var song3 = new Song('hey',7000,3);
@@ -81,15 +102,14 @@ $(document).ready(function() {
     jukebox.addSong(song);
     $("input#songTitle").val("");
     $("input#duration").val("");
-  })
+  });
 
   $("form#findSong").submit(function(event) {
     event.preventDefault();
-  })
+  });
 
   $("#playNext").click(function() {
-    jukebox.playThrough();
+    jukebox.startPlay();
     $("div#nowPlaying").text(jukebox.currentSong.title);
-  })
-
-})
+  });
+});
