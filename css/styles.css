@@ -68,6 +68,16 @@ a {
   border-top: 1px solid #999;
 }
 
+#nowPlaying {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.songNav {
+  cursor: pointer;
+  width: 15%;
+}
+
 .modal-content, input, button {
     background: rgb(100, 100, 100, 0.5);
 }

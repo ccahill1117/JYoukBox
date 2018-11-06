@@ -16,32 +16,25 @@
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <span class="logo"><a href="index.html">jYoukBox Music Player</a></span>
         <ul id="nav">
-          <li><a href="order.html" data-toggle="modal" data-target="#addSongModal">Add A Song</a></li>
-          <li><a href="order.html" data-toggle="modal" data-target="#findSongModal">Find A Song</a></li>
-          <li><a href="history.html">History</a></li>
+          <li><a href="" data-toggle="modal" data-target="#addSongModal">Add A Song</a></li>
+          <li><a href="" data-toggle="modal" data-target="#findSongModal">Find A Song</a></li>
         </ul>
       </nav>
       <div id="display">
         <div class="" id="nowPlaying">
-        <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/499015278&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
         </div>
 
         <div class="" id="displayQueue">
-            <p>song 1 title <span id="song1"></span>
-            </p>
-            <p>song 2 title <span id="song2"></span>
-            </p>
-            <p>song 3 title <span id="song3"></span>
-            </p>
-            <!-- <p>song 4</p>
-            <p>song 5</p>
-            <p>song 6</p>
-            <p>song 7</p>
-            <p>song 8</p>
-            <p>song 9</p>
-            <p>song 10</p> -->
-            <button type="button" id="playNext" name="button">playNext</button>
+          <p><span id="song1"></span></p>
+          <p><span id="song2"></span></p>
+          <p><span id="song3"></span></p>
         </div>
+
+        <span class="songNav glyphicon glyphicon-menu-left" id="playLast"></span>
+        <span class="songNav glyphicon glyphicon-pause" id="pause"></span>
+        <span class="songNav glyphicon glyphicon-play" id="play"></span>
+        <span class="songNav glyphicon glyphicon-stop" id="stop"></span>
+        <span class="songNav glyphicon glyphicon-menu-right" id="playNext"></span>
       </div>
 
       <!-- Modified Bootstrap Modal From https://getbootstrap.com/docs/4.0/components/modal/ -->
@@ -58,7 +51,7 @@
               <form class="" id="addSong">
                 <div class="form-group">
                   <label for="songTitle">Title</label>
-                  <input type="text" id="title" placeholder="Song title">
+                  <input type="text" id="songTitle" placeholder="Song title">
 
                   <label for="duration">Duration</label>
                   <input type="text" id="duration" placeholder="Song time">
