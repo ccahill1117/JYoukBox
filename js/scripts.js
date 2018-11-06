@@ -46,17 +46,33 @@ Jukebox.prototype.grabId = function(inputID) {
 
 Jukebox.prototype.playThrough = function() {
   for (var i=0; i<this.queue.length; i++) {
-    if (this.queue[i].id === this.counter) {
-      this.currentSong = this.queue[i];
-    }
+      if (this.queue[i].id === this.counter) {
+        (function theLoop (index) {
+          setTimeout(function() {
+            if(-- index) {
+              theLoop(index);
+
+            }
+          }, 3000);
+        }
+}
+}
+}
+        // var makeThisCurrentSong = this.queue[i];
+        // // console.log(makeThisCurrentSong);
+        // var songId = this.queue[i].id;
+        // // console.log(songId);
+        // var songDuration = this.queue[i].duration;
+        // // console.log(songDuration);
+
+      setInterval(function() {
+        this.currentSong = makeThisCurrentSong;
+        console.log(makeThisCurrentSong);
+        console.log(songDuration);
+        }, songDuration);
   }
   return this.counter += 1;
 }
-
-// Jukebox.prototype.startPlay = function(counter) {
-//   setTimeout(function() { jukebox.playThrough(counter); },
-//   jukebox.currentSong.duration);
-// }
 
 
 // USER INTERFACE LOGIC
