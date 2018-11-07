@@ -26,13 +26,14 @@ Jukebox.prototype.addSongToQueue = function(song) {
   var songHtml = `<p id="${song.id}">${song.title}<span id="${remove}">   | remove|</span></p>`;
   $("#displayQueue").append(songHtml);
 }
-// Jukebox.prototype.removeSongFromQueue = function (){
-//   for (var index=0; index< this.queue.length; index++) {
-//     if (this.queue[index].id == inputID) {
-//       delete this.title[i];
-// }
-// }
-// }
+Jukebox.prototype.removeSongFromQueue = function (){
+  alert("this clickable doesn't work")
+  // for (var index=0; index< this.queue.length; index++) {
+  //   if (this.queue[index].id == index) {
+  //     delete this.title;
+}
+
+
 
 Jukebox.prototype.assignId = function() {
   return this.queue.totalSongs += 1;
