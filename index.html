@@ -15,7 +15,8 @@
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <span class="logo"><a href="index.html">jYoukBox Music Player</a></span>
         <ul id="nav">
-          <li><span class="navLinks" data-toggle="modal" data-target="#addSongModal">Add A Song</span></li>
+          <li><span class="clickable" data-toggle="modal" data-target="#addSongModal">Add A Song</span></li>
+          <li><span class="clickable" data-toggle="modal" data-target="#findSongModal" id="findSong">Library</span></li>
         </ul>
       </nav>
       <div id="display">
@@ -31,7 +32,6 @@
         <span class="songNav glyphicon glyphicon-stop" id="stop"></span>
         <span class="songNav glyphicon glyphicon-menu-right" id="playNext"></span>
         <form method="get" action="https://music.youtube.com/search"> <input type="text" name="q" size="31" maxlength="255" value="" /> <input type="submit" value="youtube search" /></form>
-
       </div>
 
       <!-- Modified Bootstrap Modal From https://getbootstrap.com/docs/4.0/components/modal/ -->
@@ -50,12 +50,34 @@
                   <label for="songTitle">Title</label>
                   <input type="text" id="songTitle" placeholder="Song title">
 
-                  <label for="videoId">Duration</label>
+                  <label for="videoId">Video ID</label>
                   <input type="text" id="videoId" placeholder="Video ID">
 
                   <button type="submit" name="button" id="addSongToQueue">Add Song</button>
                 </div>
               </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modified Bootstrap Modal From https://getbootstrap.com/docs/4.0/components/modal/ -->
+      <div class="modal fade" id="findSongModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="">Find a song in our library</h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="displayLibrary">
+
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

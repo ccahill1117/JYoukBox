@@ -55,7 +55,7 @@ a {
   background: rgb(100, 100, 100, 0.5);
 }
 
-.navLinks {
+.clickable  {
   cursor: pointer;
 }
 .clickable {
@@ -63,8 +63,8 @@ a {
 }
 
 #display {
-  grid-column: 1 / 5;
-  grid-row: 2;
+  grid-column: 1 / 7;
+  grid-row: 4;
   color: #010202;
   border: 2px solid 0;
   background: rgba(0, 0, 0, 0.3);
@@ -82,10 +82,11 @@ a {
   font-size: 1.2em;
 }
 
-.songNav {
-  cursor: pointer;
+.videoControls {
   width: 15%;
 }
+
+
 
 .modal-content, input, button {
     background: rgb(100, 100, 100, 0.5);
