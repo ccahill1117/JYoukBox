@@ -11,92 +11,24 @@
     <title>jYoukBox Music</title>
   </head>
   <body>
-    <div class="container">
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <span class="logo"><a href="index.html">jYoukBox Music Player</a></span>
-        <ul id="nav">
-          <li><span class="navLinks" data-toggle="modal" data-target="#addSongModal">Add A Song</span></li>
-          <li><span class="navLinks" data-toggle="modal" data-target="#findSongModal">Find A Song</span></li>
-        </ul>
-      </nav>
-      <div id="display">
-        <div class="" id="nowPlaying">
-        </div>
-
-        <div class="" id="displayQueue">
-          <p><span id="song1"></span></p>
-          <p><span id="song2"></span></p>
-          <p><span id="song3"></span></p>
-        </div>
-
-        <span class="songNav glyphicon glyphicon-menu-left" id="playLast"></span>
-        <span class="songNav glyphicon glyphicon-pause" id="pause"></span>
-        <span class="songNav glyphicon glyphicon-play" id="play"></span>
-        <span class="songNav glyphicon glyphicon-stop" id="stop"></span>
-        <span class="songNav glyphicon glyphicon-menu-right" id="playNext"></span>
-      </div>
-
-      <!-- Modified Bootstrap Modal From https://getbootstrap.com/docs/4.0/components/modal/ -->
-      <div class="modal fade" id="addSongModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="">Add a song to the jukebox</h5>
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form class="" id="addSong">
-                <div class="form-group">
-                  <label for="songTitle">Title</label>
-                  <input type="text" id="songTitle" placeholder="Song title">
-
-                  <label for="duration">Duration</label>
-                  <input type="text" id="duration" placeholder="Song time">
-
-                  <button type="submit" name="button" id="addSongToQueue">Add Song</button>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modified Bootstrap Modal From https://getbootstrap.com/docs/4.0/components/modal/ -->
-      <div class="modal fade" id="findSongModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="">Search for a song in the jukebox</h5>
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form class="" id="findSong">
-                <div class="form-group">
-                  <label for="songTitle">Title</label>
-                  <input type="text" id="title" placeholder="Song title">
-
-                  <label for="songId">Song ID</label>
-                  <input type="text" id="songId" placeholder="Song ID">
-
-                  <button type="submit" name="button" id="addSongToQueue">Find Song</button>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
-    </div>
+    <div id="player"></div>
+
+    <div id="output"></div>
+
+    <button type="button" id="startButton" name="button">Click to begin jukebox</button>
+
+    <form class="form-group" id="addSong" method="post">
+      <label for="">provide a name for your song</label>
+      <input id="submitVideoName" type="text" name="" value="">
+
+      <label for="">please enter youtube video ID here</label>
+      <input id="submitVideoID" type="text" name="" value="">
+
+      <button type="submit" name="button">Add song to library</button>
+    </form>
+
+
   </body>
 </html>
