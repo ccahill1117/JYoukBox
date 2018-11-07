@@ -15,8 +15,8 @@
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <span class="logo"><a href="index.html">jYoukBox Music Player</a></span>
         <ul id="nav">
-          <li><span class="navLinks" data-toggle="modal" data-target="#addSongModal">Add A Song</span></li>
-          <li><span class="navLinks" data-toggle="modal" data-target="#findSongModal" id="findSong">Find A Song</span></li>
+          <li><span class="clickable" data-toggle="modal" data-target="#addSongModal">Add A Song</span></li>
+          <li><span class="clickable" data-toggle="modal" data-target="#findSongModal" id="findSong">Library</span></li>
         </ul>
       </nav>
       <div id="display">
@@ -25,11 +25,11 @@
         <div class="" id="displayQueue">
         </div>
 
-        <span class="songNav glyphicon glyphicon-menu-left" id="playLast"></span>
-        <span class="songNav glyphicon glyphicon-pause" id="pause"></span>
-        <span class="songNav glyphicon glyphicon-play" id="startButton"></span>
-        <span class="songNav glyphicon glyphicon-stop" id="stop"></span>
-        <span class="songNav glyphicon glyphicon-menu-right" id="playNext"></span>
+        <span class="videoControls clickable glyphicon glyphicon-menu-left" id="playLast"></span>
+        <span class="videoControls clickable glyphicon glyphicon-pause" id="pause"></span>
+        <span class="videoControls clickable glyphicon glyphicon-play" id="startButton"></span>
+        <span class="videoControls clickable glyphicon glyphicon-stop" id="stop"></span>
+        <span class="videoControls clickable glyphicon glyphicon-menu-right" id="playNext"></span>
       </div>
 
       <!-- Modified Bootstrap Modal From https://getbootstrap.com/docs/4.0/components/modal/ -->
@@ -73,7 +73,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="" id="displayLibrary">
+              <div id="displayLibrary">
 
               </div>
             </div>

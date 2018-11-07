@@ -22,7 +22,6 @@ Jukebox.prototype.addSongToLibrary = function(song) {
 Jukebox.prototype.findSongInLibrary = function(videoId) {
   for (var index=0; index< this.library.length; index++) {
     if (this.library[index].videoID == videoId) {
-      console.log(this.library[index].videoID);
       return index;
     }
   };
@@ -36,13 +35,17 @@ Jukebox.prototype.removeSongFromLibrary = function(videoId) {
 
 Jukebox.prototype.displayLibrary = function() {
   var htmlForLibraryDisplay = "";
-  var sondId;
+  var videoId;
   var songTitle;
+  var libraryClass = "clickable library"
   for (var i=0; i<this.library.length; i++) {
-    songIdNumber = this.library[i].id;
+    videoId = this.library[i].videoID;
     songTitle = this.library[i].title;
-    htmlForLibraryDisplay += "<p id=" + songIdNumber + ">" + songTitle + "</p>"
+    // htmlForLibraryDisplay += "<p class=" + libraryClass + " id=" + videoId + ">" + songTitle + "</p>"
+
+    htmlForLibraryDisplay += `<p class="${libraryClass}" id="${videoId}">${songTitle}</p>`
   }
+  console.log(htmlForLibraryDisplay);
   return htmlForLibraryDisplay;
 }
 
@@ -74,6 +77,7 @@ Jukebox.prototype.displayQueue = function() {
     songTitle = this.queue[i].title;
     htmlForQueueDisplay += "<p id=" + songIdNumber + ">" + songTitle + "</p>"
   }
+  console.log(htmlForQueueDisplay);
   return htmlForQueueDisplay;
 }
 
@@ -172,6 +176,13 @@ $(document).ready(function() {
   $("span#findSong").click(function() {
     var htmlForLibraryDisplay = jukebox.displayLibrary();
     $("div#displayLibrary").html(htmlForLibraryDisplay);
+  })
+
+  $("#displayLibrary").on('click',".clickable", function() {
+    var videoId = this.id;
+    var songIndex = jukebox.findSongInLibrary(videoId);
+    var song = jukebox.library[songIndex];
+    jukebox.addSongToQueue(song);
   })
 
   $("span#startButton").click(function() {
