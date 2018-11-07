@@ -13,7 +13,7 @@ function Jukebox() {
 }
 
 Jukebox.prototype.addSong = function(song) {
-  this.queue.push(song);
+  this.library.push(song);
   song.id = this.assignId();
 }
 
