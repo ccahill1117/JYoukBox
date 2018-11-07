@@ -50,11 +50,13 @@ var newSong = new Song;
 
 var song1 = new Song('Beatles let it be','QDYfEBY9NM4', 1);
 var song2 = new Song('Black Flag - wasted','K89HUW3DIEk', 2);
-var song3 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM', 3);
+var song3 = new Song('dont let me d','NCtzkaL2t_Y', 3);
+var song4 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM', 4);
 
 jukebox.addSongToQueue(song1);
 jukebox.addSongToQueue(song2);
 jukebox.addSongToQueue(song3);
+jukebox.addSongToQueue(song4);
 jukebox.currentSong = {title: "beatles LIB", videoID: "QDYfEBY9NM4", id: 1};
 
 
@@ -98,9 +100,8 @@ var vidID = jukebox.currentSong.videoID;
         }
 
         if (event.data == -1) {
-        $("#outputErrorSpan").text("its broke");
+          checkIfUnavail();
 
-                //   done = true;
         }
 
         if (event.data == YT.PlayerState.ENDED) {
@@ -108,10 +109,6 @@ var vidID = jukebox.currentSong.videoID;
           jukebox.playThrough();
           player.loadVideoById(jukebox.currentSong[0].videoID);
         }
-        // if (event.data == YT.PlayerState.UNSTARTED) {
-        //   jukebox.playThrough();
-        //   player.loadVideoById(jukebox.currentSong[0].videoID);
-        // }
 
       }
 
@@ -124,6 +121,18 @@ var vidID = jukebox.currentSong.videoID;
         player.getDuration();
         var timeVid = player.getDuration();
         return timeVid;
+      }
+
+      var playerStateReturned;
+
+      function checkIfUnavail() {
+        playerStateReturned = setTimeout(function() {
+          if (player.getPlayerState() === -1) {
+            jukebox.playThrough();
+            player.loadVideoById(jukebox.currentSong[0].videoID);
+          }
+          else {clearTimeout();} }, 2000);
+
       }
 
 $(document).ready(function() {
