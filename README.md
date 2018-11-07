@@ -9,16 +9,16 @@ The goal of this project is to create a Spotify-like song/video player. A user c
 
 ### Specifications:
 ##### Spec 1: Create a song object:
-- [ ] **Expect:** input/output expected;
+- [x] **Expect:** input/output expected;
 
 ##### Spec 2: Create a new song:
-- [ ] **Expect:** input/output expected;
+- [x] **Expect:** input/output expected;
 
 ##### Spec 3: Add song to play queue:
-- [ ] **Expect:** input: a song/output: song added to queue;
+- [x] **Expect:** input: a song/output: song added to queue;
 
 ##### Spec 4: console.log queue:
-- [ ] **Expect:** input: console.log(queue)/output: list of songs added to queue;
+- [x] **Expect:** input: console.log(queue)/output: list of songs added to queue;
 
 ### Things we'll need:
 BUSINESS LOGIC
@@ -41,6 +41,11 @@ Show history on screen
 Search for songs
 Add songs
 
+##### Spec 5: find song in libray:
+- [x] **Expect:** input: video Id / return: video index;
+
+##### Spec 6: remove song from libray:
+- [x] **Expect:** input: video Id / result: video removed from library;
 
 
 ## Setup/Installation Requirements
