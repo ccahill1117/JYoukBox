@@ -115,6 +115,9 @@ function onPlayerStateChange(event) {
 function stopVideo() {
   player.stopVideo();
 }
+function pauseVideo(){
+  player.pauseVideo();
+}
 
 
 function getTimeAndStart() {
@@ -141,6 +144,12 @@ jukebox.addSongToQueue(song);
 
 $("form#findSong").submit(function(event) {
   event.preventDefault();
+})
+$("span#pause").click(function() {
+  player.pauseVideo();
+})
+$("#stop").click(function() {
+  player.stopVideo();
 })
 
 $("span#startButton").click(function() {
