@@ -45,13 +45,15 @@ Jukebox.prototype.displayLibrary = function() {
 
     htmlForLibraryDisplay += `<p class="${libraryClass}" id="${videoId}">${songTitle}</p>`
   }
-  console.log(htmlForLibraryDisplay);
   return htmlForLibraryDisplay;
 }
 
 Jukebox.prototype.addSongToQueue = function(song) {
   this.queue.push(song);
-  var songHtml = "<p id=" + song.id + ">" + song.title + "</p>";
+  var songId = song.id;
+  var songTitle = song.title;
+  var songHtml = `<p id="${song.id}">${song.title}</p>`;
+
   $("#displayQueue").append(songHtml);
 }
 
@@ -75,9 +77,8 @@ Jukebox.prototype.displayQueue = function() {
   for (var i=0; i<this.queue.length; i++) {
     songIdNumber = this.queue[i].id;
     songTitle = this.queue[i].title;
-    htmlForQueueDisplay += "<p id=" + songIdNumber + ">" + songTitle + "</p>"
+    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}</p>`;
   }
-  console.log(htmlForQueueDisplay);
   return htmlForQueueDisplay;
 }
 
