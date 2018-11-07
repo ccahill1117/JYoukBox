@@ -146,7 +146,6 @@ function stopVideo() {
   player.stopVideo();
 }
 
-
 function getTimeAndStart() {
   player.playVideo();
   player.getDuration();
@@ -171,7 +170,6 @@ $(document).ready(function() {
   })
 
   $("span#findSong").click(function() {
-    console.log("Got to library modal.")
     var htmlForLibraryDisplay = jukebox.displayLibrary();
     $("div#displayLibrary").html(htmlForLibraryDisplay);
   })

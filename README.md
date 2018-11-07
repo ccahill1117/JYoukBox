@@ -48,7 +48,10 @@ Add songs
 - [x] **Expect:** input: video Id / result: video removed from library;
 
 ##### Spec 6: display libray:
-- [ ] **Expect:** user clicks on library-linked element, the library shows as a list;
+- [x] **Expect:** user clicks on library-linked element, the library shows as a list;
+
+##### Spec 7: A click on song in library list adds that song to the queue:
+- [x] **Expect:** user clicks on library-linked element, the library shows as a list;
 
 
 ## Setup/Installation Requirements
