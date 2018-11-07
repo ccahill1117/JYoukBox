@@ -51,6 +51,7 @@ var newSong = new Song;
 var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY', 1);
 var song2 = new Song('Black Flag - wasted','K89HUW3DIEk', 2);
 var song3 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM', 3);
+
 jukebox.addSongToQueue(song1);
 jukebox.addSongToQueue(song2);
 jukebox.addSongToQueue(song3);
@@ -136,6 +137,10 @@ $(document).ready(function() {
     event.preventDefault();
     var inputSongName = $("#submitVideoName").val();
     var inputSongID = $("#submitVideoID").val();
+    jukebox.addSongToLibrary(new Song(inputSongName,inputSongID));
+    $("#submitVideoName").val("");
+    $("#submitVideoID").val("");
+
   })
 
 
