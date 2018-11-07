@@ -4,6 +4,7 @@ function Song(title, videoID) {
   this.title = title,
   this.videoID = videoID,
   this.id = 0
+
 }
 
 function Jukebox() {
@@ -21,9 +22,16 @@ Jukebox.prototype.addSongToLibrary = function(song) {
 Jukebox.prototype.addSongToQueue = function(song) {
   song.id = this.assignId();
   this.queue.push(song);
-  var songHtml = "<p id=" + song.id + ">" + song.title + "</p>";
+  var songHtml = `<p id="${song.id}">${song.title}</p>`;
   $("#displayQueue").append(songHtml);
 }
+// Jukebox.prototype.removeSongFromQueue = function (){
+//   for (var index=0; index< this.queue.length; index++) {
+//     if (this.queue[index].id == inputID) {
+//       delete this.title[i];
+// }
+// }
+// }
 
 Jukebox.prototype.assignId = function() {
   return this.queue.totalSongs += 1;
@@ -42,10 +50,16 @@ Jukebox.prototype.displayQueue = function() {
   var htmlForQueueDisplay = "";
   var sondId;
   var song;
+  var songTitle;
+  var remove = "remove";
+  // var button = document.createElement("BUTTON");
+  // button.innerHTML = "Do Something";
   for (var i=0; i<this.queue.length; i++) {
     songIdNumber = this.queue[i].id;
-    song = this.queue[i].title;
-    htmlForQueueDisplay += "<p id=" + songIdNumber + ">" + song + "</p>"
+    songTitle = this.queue[i].title;
+    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}<span id="${remove}">   | remove|</span></p>`;
+
+    // htmlForQueueDisplay += "<p id=" + songIdNumber + ">" + song + $('<button>accept</button>').attr('id', '#delete'); + "</p>"
   }
   return htmlForQueueDisplay;
 }
@@ -59,7 +73,6 @@ Jukebox.prototype.playThrough = function() {
     }
   }
 }
-
 var jukebox = new Jukebox;
 var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY');
 var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
@@ -142,8 +155,13 @@ jukebox.addSongToQueue(song);
   $("#submitVideoID").val("");
 })
 
+
+
 $("form#findSong").submit(function(event) {
   event.preventDefault();
+})
+$("#remove").click(function(){
+  jukebox.removeSongFromQueue();
 })
 $("span#pause").click(function() {
   player.pauseVideo();
