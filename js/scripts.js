@@ -48,14 +48,14 @@ Jukebox.prototype.playThrough = function() {
 var jukebox = new Jukebox;
 var newSong = new Song;
 
-var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY', 1);
+var song1 = new Song('Beatles let it be','QDYfEBY9NM4', 1);
 var song2 = new Song('Black Flag - wasted','K89HUW3DIEk', 2);
 var song3 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM', 3);
 
 jukebox.addSongToQueue(song1);
 jukebox.addSongToQueue(song2);
 jukebox.addSongToQueue(song3);
-jukebox.currentSong = {title: "Black Flag - I dont care", videoID: "0Z-0z9RHjaY", id: 1};
+jukebox.currentSong = {title: "beatles LIB", videoID: "QDYfEBY9NM4", id: 1};
 
 
 var vidID = jukebox.currentSong.videoID;
@@ -93,22 +93,31 @@ var vidID = jukebox.currentSong.videoID;
                   //   done = true;
         }
         if (event.data == YT.PlayerState.PLAYING) {
-          $("#outputNameSpan").text(jukebox.currentSong[0].title);
-                  //   done = true;
+        $("#outputNameSpan").text(jukebox.currentSong[0].title);
+                //   done = true;
+        }
+
+        if (event.data == -1) {
+        $("#outputErrorSpan").text("its broke");
+
+                //   done = true;
         }
 
         if (event.data == YT.PlayerState.ENDED) {
           console.log("ended");
           jukebox.playThrough();
           player.loadVideoById(jukebox.currentSong[0].videoID);
-
         }
+        // if (event.data == YT.PlayerState.UNSTARTED) {
+        //   jukebox.playThrough();
+        //   player.loadVideoById(jukebox.currentSong[0].videoID);
+        // }
+
       }
 
       function stopVideo() {
         player.stopVideo();
       }
-
 
       function getTimeAndStart() {
         player.playVideo();
@@ -116,8 +125,6 @@ var vidID = jukebox.currentSong.videoID;
         var timeVid = player.getDuration();
         return timeVid;
       }
-
-
 
 $(document).ready(function() {
   $("#startButton").click(function() {
@@ -143,7 +150,7 @@ $(document).ready(function() {
   })
 
   //shoutout https://codepen.io/catmull/pen/cnpsK
-  $('.js-youtube-vid').on('change', function(){
+  $('.youTubeURLMachine').on('change', function(){
     var newval = '',
         $this = $(this);
     if (newval = $this.val().match(/(\?|&)v=([^&#]+)/)) {
@@ -153,6 +160,7 @@ $(document).ready(function() {
     } else if (newval = $this.val().match(/(\embed\/)+([^\/]+)/)) {
       $this.val(newval.pop().replace('?rel=0',''));
     }
+
   });
 
 });
