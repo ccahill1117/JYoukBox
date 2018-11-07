@@ -22,7 +22,7 @@ Jukebox.prototype.addSongToLibrary = function(song) {
 }
 
 Jukebox.prototype.assignId = function() {
-  return this.queue.totalSongs += 4;
+  return this.queue.totalSongs += 1;
 }
 
 Jukebox.prototype.grabId = function(inputID) {
@@ -140,8 +140,19 @@ $(document).ready(function() {
     jukebox.addSongToLibrary(new Song(inputSongName,inputSongID));
     $("#submitVideoName").val("");
     $("#submitVideoID").val("");
-
   })
 
+  //shoutout https://codepen.io/catmull/pen/cnpsK
+  $('.js-youtube-vid').on('change', function(){
+    var newval = '',
+        $this = $(this);
+    if (newval = $this.val().match(/(\?|&)v=([^&#]+)/)) {
+        $this.val(newval.pop());
+    } else if (newval = $this.val().match(/(\.be\/)+([^\/]+)/)) {
+        $this.val(newval.pop());
+    } else if (newval = $this.val().match(/(\embed\/)+([^\/]+)/)) {
+      $this.val(newval.pop().replace('?rel=0',''));
+    }
+  });
 
 });
