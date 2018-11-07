@@ -159,31 +159,32 @@ $(document).ready(function() {
   var htmlForQueueDisplay = jukebox.displayQueue();
   $("div#displayQueue").html(htmlForQueueDisplay);
 
-$("form#addSongToQueue").submit(function(event) {
-  event.preventDefault();
-  var songTitle = $("input#songTitle").val();
-  var songDuration = $("input#videoId").val();
-  var song = new Song(songTitle, songDuration);
-  jukebox.addSongToLibrary(song);
-  jukebox.addSongToQueue(song);
-  $("#submitVideoName").val("");
-  $("#submitVideoID").val("");
-})
+  $("form#addSongToQueue").submit(function(event) {
+    event.preventDefault();
+    var songTitle = $("input#songTitle").val();
+    var songDuration = $("input#videoId").val();
+    var song = new Song(songTitle, songDuration);
+    jukebox.addSongToLibrary(song);
+    jukebox.addSongToQueue(song);
+    $("#submitVideoName").val("");
+    $("#submitVideoID").val("");
+  })
 
-$("form#findSong").submit(function(event) {
-  event.preventDefault();
-})
+  $("span#findSong").click(function() {
+    console.log("Got to library modal.")
+    var htmlForLibraryDisplay = jukebox.displayLibrary();
+    $("div#displayLibrary").html(htmlForLibraryDisplay);
+  })
 
-$("span#startButton").click(function() {
-  jukebox.playThrough();
-  getTimeAndStart();
-  $("span#playNext").show();
+  $("span#startButton").click(function() {
+    jukebox.playThrough();
+    getTimeAndStart();
+    $("span#playNext").show();
+  });
 
-});
-
-$("span#playNext").click(function() {
-  jukebox.playThrough();
-  player.loadVideoById(jukebox.currentSong[0].videoID);
-});
+  $("span#playNext").click(function() {
+    jukebox.playThrough();
+    player.loadVideoById(jukebox.currentSong[0].videoID);
+  });
 
 })

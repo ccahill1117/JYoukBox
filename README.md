@@ -1,6 +1,6 @@
 # jYoukBox
 
-#### A multi-user song/video player
+#### A song/video player
 
 #### Scott Bergler, Chris Cahill & Ryan Leslie
 
@@ -46,6 +46,9 @@ Add songs
 
 ##### Spec 6: remove song from libray:
 - [x] **Expect:** input: video Id / result: video removed from library;
+
+##### Spec 6: display libray:
+- [ ] **Expect:** user clicks on library-linked element, the library shows as a list;
 
 
 ## Setup/Installation Requirements

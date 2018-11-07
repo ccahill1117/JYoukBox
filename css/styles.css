@@ -60,8 +60,8 @@ a {
 }
 
 #display {
-  grid-column: 1 / 5;
-  grid-row: 2;
+  grid-column: 1 / 7;
+  grid-row: 4;
   color: #010202;
   border: 2px solid 0;
   background: rgba(0, 0, 0, 0.3);
