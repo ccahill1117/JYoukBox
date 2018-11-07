@@ -1,6 +1,6 @@
 # jYoukBox
 
-#### A multi-user song/video player
+#### A song/video player
 
 #### Scott Bergler, Chris Cahill & Ryan Leslie
 
@@ -9,16 +9,16 @@ The goal of this project is to create a Spotify-like song/video player. A user c
 
 ### Specifications:
 ##### Spec 1: Create a song object:
-- [ ] **Expect:** input/output expected;
+- [x] **Expect:** input/output expected;
 
 ##### Spec 2: Create a new song:
-- [ ] **Expect:** input/output expected;
+- [x] **Expect:** input/output expected;
 
 ##### Spec 3: Add song to play queue:
-- [ ] **Expect:** input: a song/output: song added to queue;
+- [x] **Expect:** input: a song/output: song added to queue;
 
 ##### Spec 4: console.log queue:
-- [ ] **Expect:** input: console.log(queue)/output: list of songs added to queue;
+- [x] **Expect:** input: console.log(queue)/output: list of songs added to queue;
 
 ### Things we'll need:
 BUSINESS LOGIC
@@ -41,6 +41,17 @@ Show history on screen
 Search for songs
 Add songs
 
+##### Spec 5: find song in libray:
+- [x] **Expect:** input: video Id / return: video index;
+
+##### Spec 6: remove song from libray:
+- [x] **Expect:** input: video Id / result: video removed from library;
+
+##### Spec 6: display libray:
+- [x] **Expect:** user clicks on library-linked element, the library shows as a list;
+
+##### Spec 7: A click on song in library list adds that song to the queue:
+- [x] **Expect:** user clicks on library-linked element, the library shows as a list;
 
 
 ## Setup/Installation Requirements

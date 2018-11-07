@@ -14,14 +14,42 @@ function Jukebox() {
 }
 
 Jukebox.prototype.addSongToLibrary = function(song) {
-  this.library.push(song);
   song.id = this.assignId();
+  this.library.push(song);
+  // song.id = this.assignId();
+}
+
+Jukebox.prototype.findSongInLibrary = function(videoId) {
+  for (var index=0; index< this.library.length; index++) {
+    if (this.library[index].videoID == videoId) {
+      return index;
+    }
+  };
+  return false;
+}
+
+Jukebox.prototype.removeSongFromLibrary = function(videoId) {
+  var indexOfSongToRemove = this.findSongInLibrary(videoId);
+  delete this.library[indexOfSongToRemove];
+}
+
+Jukebox.prototype.displayLibrary = function() {
+  var htmlForLibraryDisplay = "";
+  this.library.forEach(function(song) {
+    var videoId = song.videoID;
+    var songTitle = song.title;
+    var libraryClass = "clickable library"
+    htmlForLibraryDisplay += `<p class="${libraryClass}" id="${videoId}">${songTitle}</p>`
+  })
+  return htmlForLibraryDisplay;
 }
 
 Jukebox.prototype.addSongToQueue = function(song) {
-  song.id = this.assignId();
   this.queue.push(song);
-  var songHtml = "<p id=" + song.id + ">" + song.title + "</p>";
+  var songId = song.id;
+  var songTitle = song.title;
+  var songHtml = `<p id="${song.id}">${song.title}</p>`;
+
   $("#displayQueue").append(songHtml);
 }
 
@@ -41,11 +69,11 @@ Jukebox.prototype.grabId = function(inputID) {
 Jukebox.prototype.displayQueue = function() {
   var htmlForQueueDisplay = "";
   var sondId;
-  var song;
+  var songTitle;
   for (var i=0; i<this.queue.length; i++) {
     songIdNumber = this.queue[i].id;
-    song = this.queue[i].title;
-    htmlForQueueDisplay += "<p id=" + songIdNumber + ">" + song + "</p>"
+    songTitle = this.queue[i].title;
+    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}</p>`;
   }
   return htmlForQueueDisplay;
 }
@@ -65,8 +93,11 @@ var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY');
 var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
 var song3 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
 jukebox.addSongToQueue(song1);
+jukebox.addSongToLibrary(song1);
 jukebox.addSongToQueue(song2);
+jukebox.addSongToLibrary(song2);
 jukebox.addSongToQueue(song3);
+jukebox.addSongToLibrary(song3);
 jukebox.currentSong = {title: "Black Flag - I dont care", videoID: "0Z-0z9RHjaY", id: 1};
 
 
@@ -116,7 +147,6 @@ function stopVideo() {
   player.stopVideo();
 }
 
-
 function getTimeAndStart() {
   player.playVideo();
   player.getDuration();
@@ -129,31 +159,38 @@ $(document).ready(function() {
   var htmlForQueueDisplay = jukebox.displayQueue();
   $("div#displayQueue").html(htmlForQueueDisplay);
 
-$("form#addSongToQueue").submit(function(event) {
-  event.preventDefault();
-  var songTitle = $("input#songTitle").val();
-  var songDuration = parseInt($("input#videoId").val());
-  var song = new Song(songTitle, songDuration);
-jukebox.addSongToQueue(song);
-  $("#submitVideoName").val("");
-  $("#submitVideoID").val("");
-})
+  $("form#addSongToQueue").submit(function(event) {
+    event.preventDefault();
+    var songTitle = $("input#songTitle").val();
+    var songDuration = $("input#videoId").val();
+    var song = new Song(songTitle, songDuration);
+    jukebox.addSongToLibrary(song);
+    jukebox.addSongToQueue(song);
+    $("#submitVideoName").val("");
+    $("#submitVideoID").val("");
+  })
 
-$("form#findSong").submit(function(event) {
-  event.preventDefault();
-})
+  $("span#findSong").click(function() {
+    var htmlForLibraryDisplay = jukebox.displayLibrary();
+    $("div#displayLibrary").html(htmlForLibraryDisplay);
+  })
 
-$("span#startButton").click(function() {
-  jukebox.playThrough();
-  getTimeAndStart();
+  $("#displayLibrary").on('click',".clickable", function() {
+    var videoId = this.id;
+    var songIndex = jukebox.findSongInLibrary(videoId);
+    var song = jukebox.library[songIndex];
+    jukebox.addSongToQueue(song);
+  })
 
-  $("span#playNext").show();
-  console.log("should start play....");
-});
+  $("span#startButton").click(function() {
+    jukebox.playThrough();
+    getTimeAndStart();
+    $("span#playNext").show();
+  });
 
-$("span#playNext").click(function() {
-  jukebox.playThrough();
-  player.loadVideoById(jukebox.currentSong[0].videoID);
-});
+  $("span#playNext").click(function() {
+    jukebox.playThrough();
+    player.loadVideoById(jukebox.currentSong[0].videoID);
+  });
 
 })
