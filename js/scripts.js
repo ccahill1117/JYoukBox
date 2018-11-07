@@ -35,16 +35,12 @@ Jukebox.prototype.removeSongFromLibrary = function(videoId) {
 
 Jukebox.prototype.displayLibrary = function() {
   var htmlForLibraryDisplay = "";
-  var videoId;
-  var songTitle;
-  var libraryClass = "clickable library"
-  for (var i=0; i<this.library.length; i++) {
-    videoId = this.library[i].videoID;
-    songTitle = this.library[i].title;
-    // htmlForLibraryDisplay += "<p class=" + libraryClass + " id=" + videoId + ">" + songTitle + "</p>"
-
+  this.library.forEach(function(song) {
+    var videoId = song.videoID;
+    var songTitle = song.title;
+    var libraryClass = "clickable library"
     htmlForLibraryDisplay += `<p class="${libraryClass}" id="${videoId}">${songTitle}</p>`
-  }
+  })
   return htmlForLibraryDisplay;
 }
 
