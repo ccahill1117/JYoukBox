@@ -62,81 +62,77 @@ jukebox.currentSong = {title: "beatles LIB", videoID: "QDYfEBY9NM4", id: 1};
 
 var vidID = jukebox.currentSong.videoID;
 
-      var tag = document.createElement('script');
+var tag = document.createElement('script');
 
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      var player;
+var player;
 
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: vidID,
-          playerVars: {'autoplay' : 0, 'controls' : 1, 'start' : 0 },
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: vidID,
+    playerVars: {'autoplay' : 0, 'controls' : 1, 'start' : 0 },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
 
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        // event.target.playVideo();
-        // comment out to NOT start at load
-      }
-      // var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING) {
-          $("#outputURLSpan").text(player.getVideoUrl());
-                  //   done = true;
-        }
-        if (event.data == YT.PlayerState.PLAYING) {
-        $("#outputNameSpan").text(jukebox.currentSong[0].title);
-                //   done = true;
-        }
+function onPlayerReady(event) {
+}
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING) {
+    $("#outputURLSpan").text(player.getVideoUrl());
+  }
+  if (event.data == YT.PlayerState.PLAYING) {
+  $("#outputNameSpan").text(jukebox.currentSong[0].title);
+  }
+  if (event.data == -1) {
+    checkIfUnavail();
+  }
+  if (event.data == YT.PlayerState.ENDED) {
+    console.log("ended");
+    jukebox.playThrough();
+    player.loadVideoById(jukebox.currentSong[0].videoID);
+  }
+}
+function stopVideo() {
+  player.stopVideo();
+}
+function getTimeAndStart() {
+  player.playVideo();
+  player.getDuration();
+  var timeVid = player.getDuration();
+  return timeVid;
+}
+function checkIfUnavail() {
+  setTimeout(function() {
+    if (player.getPlayerState() === -1) {
+      jukebox.playThrough();
+      player.loadVideoById(jukebox.currentSong[0].videoID);
+    }
+    else {clearTimeout();} }, 2000);
+}
+var myVar;
 
-        if (event.data == -1) {
-          checkIfUnavail();
+function playerStateConsoleLog() {
+  myVar = setInterval(alertFunc, 300);
+}
 
-        }
-
-        if (event.data == YT.PlayerState.ENDED) {
-          console.log("ended");
-          jukebox.playThrough();
-          player.loadVideoById(jukebox.currentSong[0].videoID);
-        }
-
-      }
-
-      function stopVideo() {
-        player.stopVideo();
-      }
-
-      function getTimeAndStart() {
-        player.playVideo();
-        player.getDuration();
-        var timeVid = player.getDuration();
-        return timeVid;
-      }
-
-      var playerStateReturned;
-
-      function checkIfUnavail() {
-        playerStateReturned = setTimeout(function() {
-          if (player.getPlayerState() === -1) {
-            jukebox.playThrough();
-            player.loadVideoById(jukebox.currentSong[0].videoID);
-          }
-          else {clearTimeout();} }, 2000);
-
-      }
+function alertFunc() {
+  console.log(player.getPlayerState());
+}
 
 $(document).ready(function() {
+
+
   $("#startButton").click(function() {
+      playerStateConsoleLog();
       jukebox.playThrough();
       getTimeAndStart();
       $("#nextButton").show();
@@ -169,7 +165,5 @@ $(document).ready(function() {
     } else if (newval = $this.val().match(/(\embed\/)+([^\/]+)/)) {
       $this.val(newval.pop().replace('?rel=0',''));
     }
-
   });
-
 });
