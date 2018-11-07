@@ -15,7 +15,17 @@ function Jukebox() {
 
 Jukebox.prototype.addSongToLibrary = function(song) {
   this.library.push(song);
-  song.id = this.assignId();
+  // song.id = this.assignId();
+}
+
+Jukebox.prototype.findSongInLibrary = function(videoId) {
+  for (var index=0; index< this.library.length; index++) {
+    if (this.library[index].videoID == videoId) {
+      console.log(this.library[index].videoID);
+      return this.library[index].title;
+    }
+  };
+  return false;
 }
 
 Jukebox.prototype.addSongToQueue = function(song) {
@@ -65,8 +75,11 @@ var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY');
 var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
 var song3 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
 jukebox.addSongToQueue(song1);
+jukebox.addSongToLibrary(song1);
 jukebox.addSongToQueue(song2);
+jukebox.addSongToLibrary(song2);
 jukebox.addSongToQueue(song3);
+jukebox.addSongToLibrary(song3);
 jukebox.currentSong = {title: "Black Flag - I dont care", videoID: "0Z-0z9RHjaY", id: 1};
 
 
@@ -132,9 +145,10 @@ $(document).ready(function() {
 $("form#addSongToQueue").submit(function(event) {
   event.preventDefault();
   var songTitle = $("input#songTitle").val();
-  var songDuration = parseInt($("input#videoId").val());
+  var songDuration = $("input#videoId").val();
   var song = new Song(songTitle, songDuration);
-jukebox.addSongToQueue(song);
+  jukebox.addSongToLibrary(song);
+  jukebox.addSongToQueue(song);
   $("#submitVideoName").val("");
   $("#submitVideoID").val("");
 })
