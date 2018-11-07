@@ -79,6 +79,10 @@ a {
   font-size: 1.2em;
 }
 
+#nextButton {
+  display: none;
+}
+
 .songNav {
   cursor: pointer;
   width: 15%;

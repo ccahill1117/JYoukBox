@@ -40,6 +40,7 @@ Jukebox.prototype.playThrough = function() {
       this.currentSong = [];
       this.currentSong.push(this.queue[i]);
       return this.counter +=1;
+
     }
   }
 }
@@ -86,14 +87,20 @@ var vidID = jukebox.currentSong.videoID;
       }
       // var done = false;
       function onPlayerStateChange(event) {
-        // if (event.data == YT.PlayerState.PLAYING && !done) {
-        //   // $("#output").text(player.getVideoUrl());
-        //   done = true;
-        // }
+        if (event.data == YT.PlayerState.PLAYING) {
+          $("#outputURLSpan").text(player.getVideoUrl());
+                  //   done = true;
+        }
+        if (event.data == YT.PlayerState.PLAYING) {
+          $("#outputNameSpan").text(jukebox.currentSong[0].title);
+                  //   done = true;
+        }
+
         if (event.data == YT.PlayerState.ENDED) {
           console.log("ended");
           jukebox.playThrough();
           player.loadVideoById(jukebox.currentSong[0].videoID);
+
         }
       }
 
@@ -109,10 +116,14 @@ var vidID = jukebox.currentSong.videoID;
         return timeVid;
       }
 
+
+
 $(document).ready(function() {
   $("#startButton").click(function() {
       jukebox.playThrough();
       getTimeAndStart();
+      $("#nextButton").show();
+
       console.log("should start play....");
   });
 
@@ -121,6 +132,11 @@ $(document).ready(function() {
     player.loadVideoById(jukebox.currentSong[0].videoID);
   });
 
-  // $("#addSong").submit(function(event) )
+  $("#addSong").submit(function(event) {
+    event.preventDefault();
+    var inputSongName = $("#submitVideoName").val();
+    var inputSongID = $("#submitVideoID").val();
+  })
+
 
 });

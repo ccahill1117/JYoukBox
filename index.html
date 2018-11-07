@@ -15,22 +15,31 @@
 
     <div id="player"></div>
 
-    <div id="output"></div>
 
-    <button type="button" id="startButton" name="button">Click to begin jukebox</button>
+    <div class="">
 
-    <form class="form-group" id="addSong" method="post">
-      <label for="">provide a name for your song</label>
-      <input id="submitVideoName" type="text" name="" value="">
+      <button type="button" id="startButton" name="button">Click to begin jukebox</button>
+      <form class="form-group" id="addSong" method="post">
+        <label for="">provide a name for your song</label>
+        <input id="submitVideoName" type="text" name="" value="">
 
-      <label for="">please enter youtube video ID here</label>
-      <input id="submitVideoID" type="text" name="" value="">
+        <label for="">please enter youtube video ID here</label>
+        <input id="submitVideoID" type="text" name="" value="">
 
-      <button type="submit" name="button">Add song to library</button>
-    </form>
+        <button type="submit" name="button">Add song to library</button>
+      </form>
+      <button type="button" id="nextButton" name="button">NEXT!</button>
 
-    <button type="button" id="nextButton" name="button">NEXT!</button>
+    </div>
 
+    <div class=''>
+      <p><span id="outputURLSpan">
+      </span>
+      </p>
+      <p><span id="outputNameSpan">
+      </span>
+      </p>
+    </div>
 
   </body>
 </html>
