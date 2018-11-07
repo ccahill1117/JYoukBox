@@ -30,7 +30,7 @@ Jukebox.prototype.findSongInLibrary = function(videoId) {
 
 Jukebox.prototype.removeSongFromLibrary = function(videoId) {
   var indexOfSongToRemove = this.findSongInLibrary(videoId);
-  this.library.splice(indexOfSongToRemove, 1);
+  delete this.library[indexOfSongToRemove];
 }
 
 Jukebox.prototype.displayLibrary = function() {
