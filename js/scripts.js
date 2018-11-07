@@ -22,18 +22,19 @@ Jukebox.prototype.addSongToLibrary = function(song) {
 Jukebox.prototype.addSongToQueue = function(song) {
   song.id = this.assignId();
   this.queue.push(song);
-  var remove = "remove";
-  var songHtml = `<p id="${song.id}">${song.title}<span id="${remove}">   | remove|</span></p>`;
+  var addThisClass = "clickable";
+  var songHtml = `<p id="${song.id}">${song.title}<span class="${addThisClass}">   | remove|</span></p>`;
   $("#displayQueue").append(songHtml);
 }
-Jukebox.prototype.removeSongFromQueue = function (){
-  alert("this clickable doesn't work")
-  // for (var index=0; index< this.queue.length; index++) {
-  //   if (this.queue[index].id == index) {
-  //     delete this.title;
+Jukebox.prototype.removeSongFromQueue = function(id) {
+  for (var index=0; index< this.queue.length; index++) {
+    if (this.queue[index].id == id) {
+      delete this.queue[index];
+      jukebox.displayQueue();
+
+    }
+  }
 }
-
-
 
 Jukebox.prototype.assignId = function() {
   return this.queue.totalSongs += 1;
@@ -53,13 +54,14 @@ Jukebox.prototype.displayQueue = function() {
   var sondId;
   var song;
   var songTitle;
-  var remove = "remove";
+  var addHideClass = "hide";
+  var addClickableClass = "clickable";
   // var button = document.createElement("BUTTON");
   // button.innerHTML = "Do Something";
   for (var i=0; i<this.queue.length; i++) {
     songIdNumber = this.queue[i].id;
     songTitle = this.queue[i].title;
-    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}<span id="${remove}">   | remove|</span></p>`;
+    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}<span class="${addHideClass}">   | remove|</span></p>`;
 
     // htmlForQueueDisplay += "<p id=" + songIdNumber + ">" + song + $('<button>accept</button>').attr('id', '#delete'); + "</p>"
   }
@@ -134,7 +136,6 @@ function pauseVideo(){
   player.pauseVideo();
 }
 
-
 function getTimeAndStart() {
   player.playVideo();
   player.getDuration();
@@ -147,42 +148,44 @@ $(document).ready(function() {
   var htmlForQueueDisplay = jukebox.displayQueue();
   $("div#displayQueue").html(htmlForQueueDisplay);
 
-$("form#addSongToQueue").submit(function(event) {
-  event.preventDefault();
-  var songTitle = $("input#songTitle").val();
-  var songDuration = parseInt($("input#videoId").val());
-  var song = new Song(songTitle, songDuration);
-jukebox.addSongToQueue(song);
-  $("#submitVideoName").val("");
-  $("#submitVideoID").val("");
-})
+  $("form#addSongToQueue").submit(function(event) {
+    event.preventDefault();
+    var songTitle = $("input#songTitle").val();
+    var songDuration = parseInt($("input#videoId").val());
+    var song = new Song(songTitle, songDuration);
+    jukebox.addSongToQueue(song);
+    $("#submitVideoName").val("");
+    $("#submitVideoID").val("");
+  })
 
+  $("form#findSong").submit(function(event) {
+    event.preventDefault();
+  })
 
+  $("#player").on('click',".clickable", function() {
+    var songId = $(this).parent().attr("id");
+    console.log(songId);
+    jukebox.removeSongFromQueue(songId);
+  })
 
-$("form#findSong").submit(function(event) {
-  event.preventDefault();
-})
-$("#remove").click(function(){
-  jukebox.removeSongFromQueue();
-})
-$("span#pause").click(function() {
-  player.pauseVideo();
-})
-$("#stop").click(function() {
-  player.stopVideo();
-})
+  $("span#pause").click(function() {
+    player.pauseVideo();
+  })
 
-$("span#startButton").click(function() {
-  jukebox.playThrough();
-  getTimeAndStart();
+  $("#stop").click(function() {
+    player.stopVideo();
+  })
 
-  $("span#playNext").show();
-  console.log("should start play....");
-});
+  $("span#startButton").click(function() {
+    jukebox.playThrough();
+    getTimeAndStart();
+    $("span#playNext").show();
+    console.log("should start play....");
+  });
 
-$("span#playNext").click(function() {
-  jukebox.playThrough();
-  player.loadVideoById(jukebox.currentSong[0].videoID);
-});
+  $("span#playNext").click(function() {
+    jukebox.playThrough();
+    player.loadVideoById(jukebox.currentSong[0].videoID);
+  });
 
 })
