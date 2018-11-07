@@ -58,6 +58,9 @@ a {
 .navLinks {
   cursor: pointer;
 }
+#remove {
+  cursor: pointer;
+}
 
 #display {
   grid-column: 1 / 5;

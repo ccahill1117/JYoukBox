@@ -22,7 +22,8 @@ Jukebox.prototype.addSongToLibrary = function(song) {
 Jukebox.prototype.addSongToQueue = function(song) {
   song.id = this.assignId();
   this.queue.push(song);
-  var songHtml = `<p id="${song.id}">${song.title}</p>`;
+  var remove = "remove";
+  var songHtml = `<p id="${song.id}">${song.title}<span id="${remove}">   | remove|</span></p>`;
   $("#displayQueue").append(songHtml);
 }
 // Jukebox.prototype.removeSongFromQueue = function (){
