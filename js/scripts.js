@@ -22,10 +22,15 @@ Jukebox.prototype.findSongInLibrary = function(videoId) {
   for (var index=0; index< this.library.length; index++) {
     if (this.library[index].videoID == videoId) {
       console.log(this.library[index].videoID);
-      return this.library[index].title;
+      return index;
     }
   };
   return false;
+}
+
+Jukebox.prototype.removeSongFromLibrary = function(videoId) {
+  var indexOfSongToRemove = this.findSongInLibrary(videoId);
+  this.library.splice(indexOfSongToRemove, 1);
 }
 
 Jukebox.prototype.addSongToQueue = function(song) {
@@ -160,9 +165,8 @@ $("form#findSong").submit(function(event) {
 $("span#startButton").click(function() {
   jukebox.playThrough();
   getTimeAndStart();
-
   $("span#playNext").show();
-  console.log("should start play....");
+
 });
 
 $("span#playNext").click(function() {
