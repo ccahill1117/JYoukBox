@@ -35,7 +35,7 @@ Jukebox.prototype.displayLibrary = function() {
   this.library.forEach(function(song) {
     var libraryClass = "clickable library";
     var clickableRemoveClass = "remove";
-    htmlForLibraryDisplay += `<p class="${libraryClass}" id="${song.videoID}">${song.title}<span class="${clickableRemoveClass}" id="${song.videoID}"> | remove</span></p>`;
+    htmlForLibraryDisplay += `<p class="${libraryClass}" id="${song.videoID}">${song.title}</p>`;
   })
   return htmlForLibraryDisplay;
 }
@@ -204,7 +204,6 @@ $(document).ready(function() {
     }
   });
 
-
   $("form#addSongToQueue").submit(function(event) {
     event.preventDefault();
     var songTitle = $("input#songTitle").val();
@@ -217,17 +216,8 @@ $(document).ready(function() {
   })
 
   $("#displayQueue").on('click', '.remove', function() {
-    console.log("Song clicked!");
     var videoId = this.id;
-    console.log(videoId);
     jukebox.removeSongFromQueue(videoId);
-  })
-
-  $("#displayLibrary").on('click', 'span.remove', function() {
-    console.log("Song clicked!");
-    var videoId = this.id;
-    console.log(videoId);
-    jukebox.removeSongFromLibrary(videoId);
   })
 
   $("span#pause").click(function() {
@@ -260,8 +250,6 @@ $(document).ready(function() {
     jukebox.playThrough();
     player.loadVideoById(jukebox.currentSong[0].videoID);
     jukebox.removeSongFromQueueAfterPlay(jukebox.counter - 1);
-
-
   });
 
 })
