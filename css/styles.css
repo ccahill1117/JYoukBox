@@ -58,6 +58,9 @@ a {
 .clickable  {
   cursor: pointer;
 }
+.clickable {
+  cursor: pointer;
+}
 
 #display {
   grid-column: 1 / 7;
@@ -99,3 +102,9 @@ input {
   left: 50%;
   top: 20%;
 }
+
+.hide {
+  display: none;
+}
+
+#player p:hover span {display: inline; }

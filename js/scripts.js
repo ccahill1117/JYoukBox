@@ -4,6 +4,7 @@ function Song(title, videoID) {
   this.title = title,
   this.videoID = videoID,
   this.id = 0
+
 }
 
 function Jukebox() {
@@ -46,11 +47,20 @@ Jukebox.prototype.displayLibrary = function() {
 
 Jukebox.prototype.addSongToQueue = function(song) {
   this.queue.push(song);
+  var addThisClass = "clickable";
+  var songHtml = `<p id="${song.id}">${song.title}<span class="${addThisClass}">   | remove|</span></p>`;
   var songId = song.id;
   var songTitle = song.title;
-  var songHtml = `<p id="${song.id}">${song.title}</p>`;
-
   $("#displayQueue").append(songHtml);
+}
+Jukebox.prototype.removeSongFromQueue = function(id) {
+  for (var index=0; index< this.queue.length; index++) {
+    if (this.queue[index].id == id) {
+      delete this.queue[index];
+      jukebox.displayQueue();
+
+    }
+  }
 }
 
 Jukebox.prototype.assignId = function() {
@@ -69,11 +79,16 @@ Jukebox.prototype.grabId = function(inputID) {
 Jukebox.prototype.displayQueue = function() {
   var htmlForQueueDisplay = "";
   var sondId;
+  var song;
   var songTitle;
+  var addHideClass = "hide";
+  var addClickableClass = "clickable";
+  // var button = document.createElement("BUTTON");
+  // button.innerHTML = "Do Something";
   for (var i=0; i<this.queue.length; i++) {
     songIdNumber = this.queue[i].id;
     songTitle = this.queue[i].title;
-    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}</p>`;
+    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}<span class="${addHideClass}">   | remove|</span></p>`;
   }
   return htmlForQueueDisplay;
 }
@@ -87,7 +102,6 @@ Jukebox.prototype.playThrough = function() {
     }
   }
 }
-
 var jukebox = new Jukebox;
 var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY');
 var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
@@ -147,6 +161,10 @@ function stopVideo() {
   player.stopVideo();
 }
 
+function pauseVideo(){
+  player.pauseVideo();
+}
+
 function getTimeAndStart() {
   player.playVideo();
   player.getDuration();
@@ -168,6 +186,20 @@ $(document).ready(function() {
     jukebox.addSongToQueue(song);
     $("#submitVideoName").val("");
     $("#submitVideoID").val("");
+  })
+
+  $("#player").on('click',".clickable", function() {
+    var songId = $(this).parent().attr("id");
+    console.log(songId);
+    jukebox.removeSongFromQueue(songId);
+  })
+
+  $("span#pause").click(function() {
+    player.pauseVideo();
+  })
+
+  $("#stop").click(function() {
+    player.stopVideo();
   })
 
   $("span#findSong").click(function() {
