@@ -2,10 +2,35 @@
 
 #### A song/video player
 
+![](img/Screen Shot 2018-11-07 at 4.22.49 PM.png)
+
 #### Scott Bergler, Chris Cahill & Ryan Leslie
 
 ## Description
 The goal of this project is to create a Spotify-like song/video player. A user can create/generate a list of media to play. It will play through that list and the user can continue to add to the list as it plays. Ultimately, we would like multiple users to be able to add to the list from their own devices (tablets, phones, etc.).
+
+### Current functionalities:
+##### Library and Song Queue:
+The library is a storehouse of songs the user can choose to add to the song queue.
+
+The song queue is a list of songs that are queued up to be played in sequence.
+
+The application preloads a few songs into the library and song queue (see image above). The user can hit the play icon to start the videos. It will play through those videos and stop.
+
+The user can add songs to the song queue in two ways:
+
+![](img/Screen Shot 2018-11-07 at 4.23.55 PM.png)
+
+The first way involves the user going to YouTube to get a video ID from the video's url and entering that along with any title they would like in the form shown above. These songs are put into the library and in to the song queue;
+
+![](img/Screen Shot 2018-11-07 at 4.24.27 PM.png)
+
+The second way a user can add to the song queue is by looking at the songs loaded into the library. Clicking on any song in that list will add it to the song queue.
+
+### Planned functionalities:
+##### ??????:
+
+What is Chris working on? Prevent videos that can't load from
 
 ### Specifications:
 ##### Spec 1: Create a song object:
