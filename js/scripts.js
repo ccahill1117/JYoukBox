@@ -90,6 +90,12 @@ var song1 = new Song('Black Flag - wasted','K89HUW3DIEk');
 var song2 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
 var song3 = new Song('Guided By Voices - watch me jumpstart', 'KIknOdpciKQ')
 var song4 = new Song('Phil Lynott and Huey Lewis - One Wish', 'SLCbFkLkFWs')
+var song5 = new Song('YMO - 1000 knives', 'xB0cwq-C77g');
+var song6 = new Song('Durutti Column - for Belgian Friends', 'N9EL_fHdhRc');
+var song7 = new Song('Lena Platanos - Shadow of Blood',
+'qIoYrkzTQoE');
+var song8 = new Song('Mariah - 心臓の扉','iRgLhEGEetc');
+var song9 = new Song('Wipers - Is This Real?', 'p0LseYkpFYk');
 // jukebox.addSongToQueue(song1);
 jukebox.addSongToLibrary(song1);
 // jukebox.addSongToQueue(song2);
@@ -98,8 +104,28 @@ jukebox.addSongToLibrary(song2);
 jukebox.addSongToLibrary(song3);
 // jukebox.addSongToQueue(song4);
 jukebox.addSongToLibrary(song4);
+jukebox.addSongToLibrary(song5);
+jukebox.addSongToLibrary(song6);
+jukebox.addSongToLibrary(song7);
+jukebox.addSongToLibrary(song8);
+jukebox.addSongToLibrary(song9);
+// jukebox.addSongToLibrary(song6);
+// jukebox.addSongToLibrary(song7);
+// jukebox.addSongToLibrary(song8);
+// jukebox.addSongToLibrary(song9);
+// jukebox.addSongToLibrary(song10);
+// jukebox.addSongToLibrary(song11);
+// jukebox.addSongToLibrary(song12);
+// jukebox.addSongToLibrary(song13);
+// jukebox.addSongToLibrary(song14);
+// jukebox.addSongToLibrary(song15);
+// jukebox.addSongToLibrary(song16);
+// jukebox.addSongToLibrary(song17);
+// jukebox.addSongToLibrary(song18);
+// jukebox.addSongToLibrary(song19);
+// jukebox.addSongToLibrary(song20);
 
-jukebox.currentSong = {title: "Guided By Voices - Watch Me Jumpstart", videoID: "KIknOdpciKQ"};
+jukebox.currentSong = {title: "YMO - 1000 Knives", videoID: "p0LseYkpFYk"};
 
 // YOUTUBE API LOGIC
 var vidID = jukebox.currentSong.videoID;
