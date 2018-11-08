@@ -31,7 +31,6 @@
         <span class="songNav glyphicon glyphicon-play" id="startButton"></span>
         <span class="songNav glyphicon glyphicon-stop" id="stop"></span>
         <span class="songNav glyphicon glyphicon-menu-right" id="playNext"></span>
-        <form method="get" action="https://music.youtube.com/search"> <input type="text" name="q" size="31" maxlength="255" value="" /> <input type="submit" value="youtube search" /></form>
       </div>
 
       <!-- Modified Bootstrap Modal From https://getbootstrap.com/docs/4.0/components/modal/ -->
@@ -56,6 +55,11 @@
                   <button type="submit" name="button" id="addSongToQueue">Add Song</button>
                 </div>
               </form>
+
+              <form method="get" action="https://music.youtube.com/search">
+                <input type="text" name="q" size="31" maxlength="255" value="" /> <input type="submit" value="search youtube" />
+              </form>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
