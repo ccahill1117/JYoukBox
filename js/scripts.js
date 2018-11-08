@@ -153,6 +153,10 @@ function onPlayerStateChange(event) {
     player.loadVideoById(jukebox.currentSong[0].videoID);
     jukebox.removeSongFromQueueAfterPlay(jukebox.counter - 1);
   }
+  if (event.data == YT.PlayerState.PLAYING) {
+  $("#outputCurrent").text(jukebox.currentSong.title);
+  $("#outputCurrent").text(jukebox.currentSong[0].title);
+  }
 }
 function stopVideo() {
   player.stopVideo();
@@ -256,6 +260,7 @@ $(document).ready(function() {
     jukebox.playThrough();
     player.loadVideoById(jukebox.currentSong[0].videoID);
     jukebox.removeSongFromQueueAfterPlay(jukebox.counter - 1);
+
 
   });
 
