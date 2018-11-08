@@ -7,6 +7,8 @@
 ## Description
 The goal of this project is to create a Spotify-like song/video player. A user can create/generate a list of media to play. It will play through that list and the user can continue to add to the list as it plays. Ultimately, we would like multiple users to be able to add to the list from their own devices (tablets, phones, etc.).
 
+This web app is advantageous over a normal YouTube playlist in a number of ways. Firstly, the web app requires no sign in and so can be shared among a number of users. Secondly, the web app can tell when a video added to the queue is not playable in an embedded environment - and it will skip over that video in the queue.
+
 ### Specifications:
 ##### Spec 1: Create a song object:
 - [ ] **Expect:** input/output expected;
@@ -26,6 +28,8 @@ Jukebox object
   -queue array
   -history queue
   -now playing
+  -skip songs which cannot be embedded
+  -digests youtube.com and music.youtube.com URLs and retrieves only YoutTube VideoIDs
   * add media method
 
 Song/Video object
