@@ -16,8 +16,10 @@ Jukebox.prototype.addSongToLibrary = function(song) {
 
 Jukebox.prototype.findSongInLibrary = function(videoId) {
   for (var index=0; index< this.library.length; index++) {
-    if (this.library[index].videoID == videoId) {
-      return index;
+    if (this.library[index]) {
+      if (this.library[index].videoID == videoId) {
+        return index;
+      }
     }
   };
   return false;
@@ -32,7 +34,7 @@ Jukebox.prototype.displayLibrary = function() {
   var htmlForLibraryDisplay = "";
   this.library.forEach(function(song) {
     var libraryClass = "clickable library"
-    htmlForLibraryDisplay += `<p class="${libraryClass}" id="${song.videoID}">${song.title}</p>`
+    htmlForLibraryDisplay += `<p class="${libraryClass}" id="${song.videoID}">${song.title}</p>`;
   })
   return htmlForLibraryDisplay;
 }
@@ -42,25 +44,24 @@ Jukebox.prototype.addSongToQueue = function(song) {
   jukebox.displayQueue();
 }
 
-Jukebox.prototype.removeSongFromQueue = function(id) {
+Jukebox.prototype.removeSongFromQueue = function(videoId) {
   for (var index=0; index< this.queue.length; index++) {
-    if (this.queue[index].id == id) {
-      delete this.queue[index];
-      jukebox.displayQueue();
+    if (this.queue[index]) {
+      if (this.queue[index].videoID == videoId) {
+        delete this.queue[index];
+        jukebox.displayQueue();
+      }
     }
   }
+  return this.queue[index];
 }
 
 Jukebox.prototype.displayQueue = function() {
   var htmlForQueueDisplay = "";
-  var songIdNumber;
-  var songTitle;
-  var addHideClass = "hide";
-  for (var i=0; i<this.queue.length; i++) {
-    songIdNumber = this.queue[i].id;
-    songTitle = this.queue[i].title;
-    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}<span class="${addHideClass}"> | remove</span></p>`;
-  }
+  var clickableClass = "clickable";
+  this.queue.forEach(function(song) {
+    htmlForQueueDisplay += `<p class="${clickableClass}" id="${song.videoID}">${song.title}<span> | remove</span></p>`;
+  })
   $("#displayQueue").html(htmlForQueueDisplay);
   return htmlForQueueDisplay;
 }
@@ -154,10 +155,11 @@ $(document).ready(function() {
     $("#submitVideoID").val("");
   })
 
-  $("#player").on('click',".clickable", function() {
-    var songId = $(this).parent().attr("id");
-    console.log(songId);
-    jukebox.removeSongFromQueue(songId);
+  $("div#player").on('click', '.clickable', function() {
+    console.log("Song clicked!");
+    // var songId = $(this).parent().attr("id");
+    // console.log(songId);
+    // jukebox.removeSongFromQueue(songId);
   })
 
   $("span#pause").click(function() {

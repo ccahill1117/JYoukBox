@@ -32,19 +32,6 @@ The second way a user can add to the song queue is by looking at the songs loade
 
 What is Chris working on? Prevent videos that can't load from
 
-### Specifications:
-##### Spec 1: Create a song object:
-- [x] **Expect:** input/output expected;
-
-##### Spec 2: Create a new song:
-- [x] **Expect:** input/output expected;
-
-##### Spec 3: Add song to play queue:
-- [x] **Expect:** input: a song/output: song added to queue;
-
-##### Spec 4: console.log queue:
-- [x] **Expect:** input: console.log(queue)/output: list of songs added to queue;
-
 ### Things we'll need:
 BUSINESS LOGIC
 Jukebox object
@@ -66,17 +53,40 @@ Show history on screen
 Search for songs
 Add songs
 
+
+### Specifications:
+##### Spec 1: Create a song object:
+- [x] **Expect:** input/output expected;
+
+##### Spec 2: Create a new song:
+- [x] **Expect:** input/output expected;
+
+##### Spec 3: Add song to play queue:
+- [x] **Expect:** input: a song/output: song added to queue;
+
+##### Spec 4: console.log queue:
+- [x] **Expect:** input: console.log(queue)/output: list of songs added to queue;
+
 ##### Spec 5: find song in libray:
 - [x] **Expect:** input: video Id / return: video index;
 
 ##### Spec 6: remove song from libray:
-- [x] **Expect:** input: video Id / result: video removed from library;
+- [ ] **Expect:** ;
 
 ##### Spec 6: display libray:
 - [x] **Expect:** user clicks on library-linked element, the library shows as a list;
 
 ##### Spec 7: A click on song in library list adds that song to the queue:
 - [x] **Expect:** user clicks on library-linked element, the library shows as a list;
+
+##### Spec 8: Remove a song from the queue:
+- [ ] **Expect:** user clicks on song to remove it from the list;
+
+##### Spec 9: Highlight Now Playing song:
+- [ ] **Expect:** ;
+
+##### Spec 10: Pre-load library:
+- [ ] **Expect:** ;
 
 
 ## Setup/Installation Requirements

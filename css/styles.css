@@ -99,8 +99,6 @@ input {
   top: 20%;
 }
 
-.hide {
-  display: none;
+#player p:hover span {
+  display: inline;
 }
-
-#player p:hover span {display: inline; }
