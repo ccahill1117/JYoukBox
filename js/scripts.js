@@ -7,7 +7,7 @@ function Song(title, videoID) {
 function Jukebox() {
   this.queue = [],
   this.library = [],
-  this.counter = 1
+  this.counter = 0
 }
 
 Jukebox.prototype.addSongToLibrary = function(song) {
@@ -57,6 +57,16 @@ Jukebox.prototype.removeSongFromQueue = function(videoId) {
   return this.queue[index];
 }
 
+Jukebox.prototype.removeSongFromQueueAfterPlay = function(counter) {
+  for (var index=0; index< this.queue.length; index++) {
+    if ([index] == (counter - 1)) {
+        delete this.queue[index];
+        jukebox.displayQueue();
+    }
+  }
+  return this.queue[index];
+}
+
 Jukebox.prototype.displayQueue = function() {
   var htmlForQueueDisplay = "";
   var queueClass = "queue"
@@ -70,7 +80,7 @@ Jukebox.prototype.displayQueue = function() {
 
 Jukebox.prototype.playThrough = function() {
   for (var i=0; i<this.queue.length; i++) {
-    if (i + 1 === this.counter) {
+    if (i === this.counter) {
       this.currentSong = [];
       this.currentSong.push(this.queue[i]);
       return this.counter +=1;
@@ -80,17 +90,31 @@ Jukebox.prototype.playThrough = function() {
 
 // INITIALIZE JUKEBOX & PRELOAD MEDIA
 var jukebox = new Jukebox;
-var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY');
-var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
-var song3 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
+var song1 = new Song('Black Flag - wasted','K89HUW3DIEk');
+var song2 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
+var song3 = new Song('Guided By Voices - watch me jumpstart', 'KIknOdpciKQ')
+var song4 = new Song('Phil Lynott and Huey Lewis - One Wish', 'SLCbFkLkFWs')
+var song5 = new Song('YMO - 1000 knives', 'xB0cwq-C77g');
+var song6 = new Song('Durutti Column - for Belgian Friends', 'N9EL_fHdhRc');
+var song7 = new Song('Lena Platanos - Shadow of Blood',
+'qIoYrkzTQoE');
+var song8 = new Song('Mariah - 心臓の扉','iRgLhEGEetc');
+var song9 = new Song('Wipers - Is This Real?', 'p0LseYkpFYk');
 jukebox.addSongToQueue(song1);
 jukebox.addSongToLibrary(song1);
 jukebox.addSongToQueue(song2);
 jukebox.addSongToLibrary(song2);
 jukebox.addSongToQueue(song3);
 jukebox.addSongToLibrary(song3);
-jukebox.currentSong = {title: "Black Flag - I dont care", videoID: "0Z-0z9RHjaY", id: 1};
+jukebox.addSongToQueue(song4);
+jukebox.addSongToLibrary(song4);
+jukebox.addSongToLibrary(song5);
+jukebox.addSongToLibrary(song6);
+jukebox.addSongToLibrary(song7);
+jukebox.addSongToLibrary(song8);
+jukebox.addSongToLibrary(song9);
 
+jukebox.currentSong = {title: "YMO - 1000 Knives", videoID: "p0LseYkpFYk"};
 
 // YOUTUBE API LOGIC
 var vidID = jukebox.currentSong.videoID;
@@ -119,34 +143,63 @@ function onYouTubeIframeAPIReady() {
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
 }
-
 function onPlayerStateChange(event) {
+  if (event.data == -1) {
+    checkIfUnavail();
+  }
   if (event.data == YT.PlayerState.ENDED) {
     console.log("ended");
     jukebox.playThrough();
     player.loadVideoById(jukebox.currentSong[0].videoID);
+    jukebox.removeSongFromQueueAfterPlay(jukebox.counter - 1);
   }
 }
-
 function stopVideo() {
   player.stopVideo();
 }
-
-function pauseVideo(){
-  player.pauseVideo();
-}
-
 function getTimeAndStart() {
   player.playVideo();
   player.getDuration();
   var timeVid = player.getDuration();
   return timeVid;
 }
+function checkIfUnavail() {
+  setTimeout(function() {
+    if (player.getPlayerState() === -1) {
+      jukebox.playThrough();
+      player.loadVideoById(jukebox.currentSong[0].videoID);
+      jukebox.removeSongFromQueueAfterPlay(jukebox.counter);
+    }
+    else {clearTimeout();} }, 2000);
+}
+var myVar;
+
+function playerStateConsoleLog() {
+  myVar = setInterval(alertFunc, 300);
+}
+
+function alertFunc() {
+  console.log(player.getPlayerState());
+}
 
 // USER INTERFACE LOGIC
 $(document).ready(function() {
   var htmlForQueueDisplay = jukebox.displayQueue();
   $("div#displayQueue").html(htmlForQueueDisplay);
+
+
+  $('input#videoId').on('change', function(){
+    var newval = '',
+        $this = $(this);
+    if (newval = $this.val().match(/(\?|&)v=([^&#]+)/)) {
+        $this.val(newval.pop());
+    } else if (newval = $this.val().match(/(\.be\/)+([^\/]+)/)) {
+        $this.val(newval.pop());
+    } else if (newval = $this.val().match(/(\embed\/)+([^\/]+)/)) {
+      $this.val(newval.pop().replace('?rel=0',''));
+    }
+  });
+
 
   $("form#addSongToQueue").submit(function(event) {
     event.preventDefault();
@@ -194,7 +247,7 @@ $(document).ready(function() {
   })
 
   $("span#startButton").click(function() {
-    jukebox.playThrough();
+    player.playVideo();
     getTimeAndStart();
     $("span#playNext").show();
   });
@@ -202,6 +255,8 @@ $(document).ready(function() {
   $("span#playNext").click(function() {
     jukebox.playThrough();
     player.loadVideoById(jukebox.currentSong[0].videoID);
+    jukebox.removeSongFromQueueAfterPlay(jukebox.counter - 1);
+
   });
 
 })
