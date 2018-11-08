@@ -58,10 +58,10 @@ Jukebox.prototype.removeSongFromQueue = function(videoId) {
 
 Jukebox.prototype.displayQueue = function() {
   var htmlForQueueDisplay = "";
-  var queue
+  var queueClass = "queue"
   var clickableRemoveClass = "clickable remove";
   this.queue.forEach(function(song) {
-    htmlForQueueDisplay += `<p" id="${song.videoID}">${song.title}<span class="${clickableRemoveClass}" id="${song.videoID}"> | remove</span></p>`;
+    htmlForQueueDisplay += `<p" class="${queueClass}" id="${song.videoID}">${song.title}<span class="${clickableRemoveClass}" id="${song.videoID}"> | remove</span></p>`;
   })
   $("#displayQueue").html(htmlForQueueDisplay);
   return htmlForQueueDisplay;
