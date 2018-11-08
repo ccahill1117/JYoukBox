@@ -68,6 +68,7 @@ a {
   background: rgba(0, 0, 0, 0.3);
   text-align: center;
   border-radius: 10px;
+  padding: 1em;
 }
 
 #display p {
@@ -106,9 +107,14 @@ input {
 
 .remove {
   display: none;
+  float: right;
 }
 
-#displayQueue:hover .remove {
+#displayQueue:hover span.remove {
   display: inline;
   color: #ccf8FF;
+}
+
+#displayLibrary:hover span.remove {
+  display: inline;
 }

@@ -33,8 +33,9 @@ Jukebox.prototype.removeSongFromLibrary = function(videoId) {
 Jukebox.prototype.displayLibrary = function() {
   var htmlForLibraryDisplay = "";
   this.library.forEach(function(song) {
-    var libraryClass = "clickable library"
-    htmlForLibraryDisplay += `<p class="${libraryClass}" id="${song.videoID}">${song.title}</p>`;
+    var libraryClass = "clickable library";
+    var clickableRemoveClass = "remove";
+    htmlForLibraryDisplay += `<p class="${libraryClass}" id="${song.videoID}">${song.title}<span class="${clickableRemoveClass}" id="${song.videoID}"> | remove</span></p>`;
   })
   return htmlForLibraryDisplay;
 }
@@ -76,6 +77,8 @@ Jukebox.prototype.playThrough = function() {
     }
   }
 }
+
+// INITIALIZE JUKEBOX & PRELOAD MEDIA
 var jukebox = new Jukebox;
 var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY');
 var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
@@ -156,10 +159,18 @@ $(document).ready(function() {
     $("#submitVideoID").val("");
   })
 
-  $("#displayQueue").on('click', '.clickable', function() {
+  $("#displayQueue").on('click', '.remove', function() {
     console.log("Song clicked!");
     var videoId = this.id;
+    console.log(videoId);
     jukebox.removeSongFromQueue(videoId);
+  })
+
+  $("#displayLibrary").on('click', 'span.remove', function() {
+    console.log("Song clicked!");
+    var videoId = this.id;
+    console.log(videoId);
+    jukebox.removeSongFromLibrary(videoId);
   })
 
   $("span#pause").click(function() {
@@ -176,7 +187,6 @@ $(document).ready(function() {
   })
 
   $("#displayLibrary").on('click', '.clickable', function() {
-    console.log("Song clicked!");
     var videoId = this.id;
     var songIndex = jukebox.findSongInLibrary(videoId);
     var song = jukebox.library[songIndex];
