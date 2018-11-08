@@ -84,23 +84,26 @@ The user interface does not currently allow songs to be deleted from the library
 ## Setup/Installation Requirements
 To view or clone the code, go to [GitHub](https://github.com/skillitzimberg/JYoukBox).
 
-The page is live at: [GitHub]( ).
+The page is live at: [GitHub Pages](https://skillitzimberg.github.io/JYoukBox/).
 
 ## Known Bugs
 The player stalls on occasion at the end of videos. There is likely a play state we are unaware of at this time.
 
 If the last song in the queue is broken or unavailable the player will show an ugly error message and keep trying to load a new video. Adding a new song allows the app to continue.
 
+Once a song is paused you do have to hit play again to start it up. Most players allow you to hit pause again to unpause.
+
+
 ## Support and contact details
 
-Where to complain/suggest
+There is no one here at the moment . . . stay tuned!
 
 ## Technologies Used
 
-HTML, CSS, & Javascript. More?
+HTML, CSS, Javascript, & the YouTube iframe API
 
 ### License
 
 Licensed under the MIT license.
 
-Copyright (c) 2018 ** Authors **
+Copyright (c) 2018 ** _Scott Bergler, Chris Cahill & Ryan Leslie_ **

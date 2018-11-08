@@ -181,7 +181,7 @@ function checkIfUnavail() {
 var myVar;
 
 function playerStateConsoleLog() {
-  myVar = setInterval(alertFunc, 300);
+  myVar = setInterval(alertFunc, 100);
 }
 
 function alertFunc() {
@@ -246,6 +246,7 @@ $(document).ready(function() {
     player.playVideo();
     getTimeAndStart();
     $("span#playNext").show();
+    playerStateConsoleLog();
   });
 
   $("span#playNext").click(function() {
