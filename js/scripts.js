@@ -76,10 +76,13 @@ Jukebox.prototype.playThrough = function() {
   }
 }
 var jukebox = new Jukebox;
-var song1 = new Song('Beatles let it be','QDYfEBY9NM4', 1);
-var song2 = new Song('Black Flag - wasted','K89HUW3DIEk', 2);
-var song3 = new Song('dont let me d','NCtzkaL2t_Y', 3);
-var song4 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM', 4);
+var song1 = new Song('Beatles let it be','QDYfEBY9NM4');
+var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
+var song3 = new Song('dont let me d','NCtzkaL2t_Y');
+var song4 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
+var song5 = new Song('Guided By Voices - watch me jumpstart', 'KIknOdpciKQ')
+var song6 = new Song('Daft Punk - Face t0 Face', 'qXI87eMP-bs')
+var song7 = new Song('Phil Lynott and Huey Lewis - One Wish', 'SLCbFkLkFWs')
 jukebox.addSongToQueue(song1);
 jukebox.addSongToLibrary(song1);
 jukebox.addSongToQueue(song2);
@@ -88,6 +91,9 @@ jukebox.addSongToQueue(song3);
 jukebox.addSongToLibrary(song3);
 jukebox.addSongToQueue(song4);
 jukebox.addSongToLibrary(song4);
+jukebox.addSongToLibrary(song5);
+jukebox.addSongToLibrary(song6);
+jukebox.addSongToLibrary(song7);
 jukebox.currentSong = {title: "beatles let it b", videoID: "QDYfEBY9NM4", id: 1};
 
 
@@ -177,7 +183,6 @@ $(document).ready(function() {
       $this.val(newval.pop().replace('?rel=0',''));
     }
   });
-
 
   $("form#addSongToQueue").submit(function(event) {
     event.preventDefault();
