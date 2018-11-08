@@ -100,6 +100,7 @@ var song7 = new Song('Lena Platanos - Shadow of Blood',
 'qIoYrkzTQoE');
 var song8 = new Song('Mariah - 心臓の扉','iRgLhEGEetc');
 var song9 = new Song('Wipers - Is This Real?', 'p0LseYkpFYk');
+var song10 = new Song('This Does not Work', 'gibberish');
 jukebox.addSongToQueue(song1);
 jukebox.addSongToLibrary(song1);
 jukebox.addSongToQueue(song2);
@@ -113,6 +114,7 @@ jukebox.addSongToLibrary(song6);
 jukebox.addSongToLibrary(song7);
 jukebox.addSongToLibrary(song8);
 jukebox.addSongToLibrary(song9);
+jukebox.addSongToLibrary(song10);
 
 jukebox.currentSong = {title: "Wipers - Is This Real?", videoID: "p0LseYkpFYk"};
 
