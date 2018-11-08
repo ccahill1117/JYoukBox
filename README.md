@@ -2,7 +2,7 @@
 
 #### A song/video player
 
-![](img/Screen Shot 2018-11-07 at 4.22.49 PM.png)
+![](img/homeScreen.png)
 
 #### Scott Bergler, Chris Cahill & Ryan Leslie
 
@@ -19,7 +19,7 @@ The application preloads a few songs into the library and song queue (see image 
 
 The user can add songs to the song queue in two ways:
 
-![](img/Screen Shot 2018-11-07 at 4.23.55 PM.png)
+![](img/addSongScreen.png)
 
 The first way involves the user going to YouTube to get the video's url and entering that along with any title they would like in the form shown above. These songs are put into the library and into the song queue;
 
@@ -27,7 +27,7 @@ A song can be deleted from the queue by clicking on the REMOVE that shows when t
 
 Songs cannot currently be deleted from the library via the UI. The methods are working in the console, but getting them targeted to elements in the DOM has proven difficult.
 
-![](img/Screen Shot 2018-11-07 at 4.24.27 PM.png)
+![](img/libraryScreen.png)
 
 The second way a user can add to the song queue is by looking at the songs loaded into the library. Clicking on any song in that list will add it to the song queue.
 
