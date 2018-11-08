@@ -7,7 +7,7 @@ function Song(title, videoID) {
 function Jukebox() {
   this.queue = [],
   this.library = [],
-  this.counter = 1
+  this.counter = 0
 }
 
 Jukebox.prototype.addSongToLibrary = function(song) {
@@ -56,6 +56,16 @@ Jukebox.prototype.removeSongFromQueue = function(videoId) {
   return this.queue[index];
 }
 
+Jukebox.prototype.removeSongFromQueueAfterPlay = function(counter) {
+  for (var index=0; index< this.queue.length; index++) {
+    if ([index] == (counter - 2)) {
+        delete this.queue[index];
+        jukebox.displayQueue();
+    }
+  }
+  return this.queue[index];
+}
+
 Jukebox.prototype.displayQueue = function() {
   var htmlForQueueDisplay = "";
   var clickableClass = "clickable";
@@ -68,7 +78,7 @@ Jukebox.prototype.displayQueue = function() {
 
 Jukebox.prototype.playThrough = function() {
   for (var i=0; i<this.queue.length; i++) {
-    if (i + 1 === this.counter) {
+    if (i === this.counter) {
       this.currentSong = [];
       this.currentSong.push(this.queue[i]);
       return this.counter +=1;
@@ -76,26 +86,20 @@ Jukebox.prototype.playThrough = function() {
   }
 }
 var jukebox = new Jukebox;
-var song1 = new Song('Beatles let it be','QDYfEBY9NM4');
-var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
-var song3 = new Song('dont let me d','NCtzkaL2t_Y');
-var song4 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
-var song5 = new Song('Guided By Voices - watch me jumpstart', 'KIknOdpciKQ')
-var song6 = new Song('Daft Punk - Face t0 Face', 'qXI87eMP-bs')
-var song7 = new Song('Phil Lynott and Huey Lewis - One Wish', 'SLCbFkLkFWs')
-jukebox.addSongToQueue(song1);
+var song1 = new Song('Black Flag - wasted','K89HUW3DIEk');
+var song2 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
+var song3 = new Song('Guided By Voices - watch me jumpstart', 'KIknOdpciKQ')
+var song4 = new Song('Phil Lynott and Huey Lewis - One Wish', 'SLCbFkLkFWs')
+// jukebox.addSongToQueue(song1);
 jukebox.addSongToLibrary(song1);
-jukebox.addSongToQueue(song2);
+// jukebox.addSongToQueue(song2);
 jukebox.addSongToLibrary(song2);
-jukebox.addSongToQueue(song3);
+// jukebox.addSongToQueue(song3);
 jukebox.addSongToLibrary(song3);
-jukebox.addSongToQueue(song4);
+// jukebox.addSongToQueue(song4);
 jukebox.addSongToLibrary(song4);
-jukebox.addSongToLibrary(song5);
-jukebox.addSongToLibrary(song6);
-jukebox.addSongToLibrary(song7);
-jukebox.currentSong = {title: "beatles let it b", videoID: "QDYfEBY9NM4", id: 1};
 
+jukebox.currentSong = {title: "Guided By Voices - Watch Me Jumpstart", videoID: "KIknOdpciKQ"};
 
 // YOUTUBE API LOGIC
 var vidID = jukebox.currentSong.videoID;
@@ -124,12 +128,6 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
 }
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING) {
-    $("#outputURLSpan").text(player.getVideoUrl());
-  }
-  if (event.data == YT.PlayerState.PLAYING) {
-  $("#outputNameSpan").text(jukebox.currentSong[0].title);
-  }
   if (event.data == -1) {
     checkIfUnavail();
   }
@@ -137,6 +135,7 @@ function onPlayerStateChange(event) {
     console.log("ended");
     jukebox.playThrough();
     player.loadVideoById(jukebox.currentSong[0].videoID);
+    jukebox.removeSongFromQueueAfterPlay(jukebox.counter);
   }
 }
 function stopVideo() {
@@ -153,6 +152,7 @@ function checkIfUnavail() {
     if (player.getPlayerState() === -1) {
       jukebox.playThrough();
       player.loadVideoById(jukebox.currentSong[0].videoID);
+      jukebox.removeSongFromQueueAfterPlay(jukebox.counter);
     }
     else {clearTimeout();} }, 2000);
 }
@@ -193,6 +193,12 @@ $(document).ready(function() {
     jukebox.addSongToQueue(song);
     $("#submitVideoName").val("");
     $("#submitVideoID").val("");
+  })
+
+  $("#displayQueue").on('click', '.clickable', function() {
+  console.log("Song clicked!");
+  var videoId = this.id;
+  jukebox.removeSongFromQueue(videoId);
   })
 
   $("div#player").on('click', '.clickable', function() {
