@@ -76,16 +76,19 @@ Jukebox.prototype.playThrough = function() {
   }
 }
 var jukebox = new Jukebox;
-var song1 = new Song('Black Flag - I dont care','0Z-0z9RHjaY');
-var song2 = new Song('Black Flag - wasted','K89HUW3DIEk');
-var song3 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
+var song1 = new Song('Beatles let it be','QDYfEBY9NM4', 1);
+var song2 = new Song('Black Flag - wasted','K89HUW3DIEk', 2);
+var song3 = new Song('dont let me d','NCtzkaL2t_Y', 3);
+var song4 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM', 4);
 jukebox.addSongToQueue(song1);
 jukebox.addSongToLibrary(song1);
 jukebox.addSongToQueue(song2);
 jukebox.addSongToLibrary(song2);
 jukebox.addSongToQueue(song3);
 jukebox.addSongToLibrary(song3);
-jukebox.currentSong = {title: "Black Flag - I dont care", videoID: "0Z-0z9RHjaY", id: 1};
+jukebox.addSongToQueue(song4);
+jukebox.addSongToLibrary(song4);
+jukebox.currentSong = {title: "beatles let it b", videoID: "QDYfEBY9NM4", id: 1};
 
 
 // YOUTUBE API LOGIC
@@ -115,28 +118,47 @@ function onYouTubeIframeAPIReady() {
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
 }
-
 function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING) {
+    $("#outputURLSpan").text(player.getVideoUrl());
+  }
+  if (event.data == YT.PlayerState.PLAYING) {
+  $("#outputNameSpan").text(jukebox.currentSong[0].title);
+  }
+  if (event.data == -1) {
+    checkIfUnavail();
+  }
   if (event.data == YT.PlayerState.ENDED) {
     console.log("ended");
     jukebox.playThrough();
     player.loadVideoById(jukebox.currentSong[0].videoID);
   }
 }
-
 function stopVideo() {
   player.stopVideo();
 }
-
-function pauseVideo(){
-  player.pauseVideo();
-}
-
 function getTimeAndStart() {
   player.playVideo();
   player.getDuration();
   var timeVid = player.getDuration();
   return timeVid;
+}
+function checkIfUnavail() {
+  setTimeout(function() {
+    if (player.getPlayerState() === -1) {
+      jukebox.playThrough();
+      player.loadVideoById(jukebox.currentSong[0].videoID);
+    }
+    else {clearTimeout();} }, 2000);
+}
+var myVar;
+
+function playerStateConsoleLog() {
+  myVar = setInterval(alertFunc, 300);
+}
+
+function alertFunc() {
+  console.log(player.getPlayerState());
 }
 
 // USER INTERFACE LOGIC
