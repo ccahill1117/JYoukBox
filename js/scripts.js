@@ -58,9 +58,10 @@ Jukebox.prototype.removeSongFromQueue = function(videoId) {
 
 Jukebox.prototype.displayQueue = function() {
   var htmlForQueueDisplay = "";
-  var clickableClass = "clickable";
+  var queue
+  var clickableRemoveClass = "clickable remove";
   this.queue.forEach(function(song) {
-    htmlForQueueDisplay += `<p class="${clickableClass}" id="${song.videoID}">${song.title}<span> | remove</span></p>`;
+    htmlForQueueDisplay += `<p" id="${song.videoID}">${song.title}<span class="${clickableRemoveClass}" id="${song.videoID}"> | remove</span></p>`;
   })
   $("#displayQueue").html(htmlForQueueDisplay);
   return htmlForQueueDisplay;
@@ -155,11 +156,10 @@ $(document).ready(function() {
     $("#submitVideoID").val("");
   })
 
-  $("div#player").on('click', '.clickable', function() {
+  $("#displayQueue").on('click', '.clickable', function() {
     console.log("Song clicked!");
-    // var songId = $(this).parent().attr("id");
-    // console.log(songId);
-    // jukebox.removeSongFromQueue(songId);
+    var videoId = this.id;
+    jukebox.removeSongFromQueue(videoId);
   })
 
   $("span#pause").click(function() {
@@ -175,7 +175,8 @@ $(document).ready(function() {
     $("div#displayLibrary").html(htmlForLibraryDisplay);
   })
 
-  $("#displayLibrary").on('click',".clickable", function() {
+  $("#displayLibrary").on('click', '.clickable', function() {
+    console.log("Song clicked!");
     var videoId = this.id;
     var songIndex = jukebox.findSongInLibrary(videoId);
     var song = jukebox.library[songIndex];

@@ -99,6 +99,10 @@ input {
   top: 20%;
 }
 
-#player p:hover span {
-  display: inline;
+#displayQueue {
+  margin-top: 1em;
+}
+
+#displayQueue p:hover .remove {
+  color: #ccf8FF;
 }
