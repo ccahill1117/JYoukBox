@@ -168,7 +168,7 @@ function checkIfUnavail() {
     if (player.getPlayerState() === -1) {
       jukebox.playThrough();
       player.loadVideoById(jukebox.currentSong[0].videoID);
-      jukebox.removeSongFromQueueAfterPlay(jukebox.counter);
+      jukebox.removeSongFromQueueAfterPlay(jukebox.counter - 1);
     }
     else {clearTimeout();} }, 2000);
 }
