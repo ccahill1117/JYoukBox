@@ -90,8 +90,8 @@ Jukebox.prototype.playThrough = function() {
 
 // INITIALIZE JUKEBOX & PRELOAD MEDIA
 var jukebox = new Jukebox;
-var song1 = new Song('Black Flag - wasted','K89HUW3DIEk');
-var song2 = new Song('Roland Kirk - inflated tear', 'ZIqLJmlQQNM');
+var song1 = new Song('Black Flag - Wasted','K89HUW3DIEk');
+var song2 = new Song('Roland Kirk - Inflated Tear', 'ZIqLJmlQQNM');
 var song3 = new Song('Guided By Voices - watch me jumpstart', 'KIknOdpciKQ')
 var song4 = new Song('Phil Lynott and Huey Lewis - One Wish', 'SLCbFkLkFWs')
 var song5 = new Song('YMO - 1000 knives', 'xB0cwq-C77g');
@@ -114,7 +114,7 @@ jukebox.addSongToLibrary(song7);
 jukebox.addSongToLibrary(song8);
 jukebox.addSongToLibrary(song9);
 
-jukebox.currentSong = {title: "YMO - 1000 Knives", videoID: "p0LseYkpFYk"};
+jukebox.currentSong = {title: "Wipers - Is This Real?", videoID: "p0LseYkpFYk"};
 
 // YOUTUBE API LOGIC
 var vidID = jukebox.currentSong.videoID;
