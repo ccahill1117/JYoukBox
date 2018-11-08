@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-size: 20px;
   font-family: 'Comfortaa', cursive;
-  color: #650d0d;
+  color: #ccf8FF;
 }
 
 .container {
@@ -58,9 +58,6 @@ a {
 .clickable  {
   cursor: pointer;
 }
-.clickable {
-  cursor: pointer;
-}
 
 #display {
   grid-column: 1 / 7;
@@ -86,10 +83,9 @@ a {
   width: 15%;
 }
 
-
-
 .modal-content, input, button {
-    background: rgb(100, 100, 100, 0.5);
+    background: rgb(100, 100, 100, 0.3);
+    color: ##ccf8FF;
 }
 
 input {

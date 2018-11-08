@@ -22,15 +22,13 @@
       <div id="display">
         <div id="player"></div>
 
-        <div class="" id="displayQueue">
-          <button type="button" name="button"></button>
-        </div>
+        <span class="videoControls glyphicon glyphicon-menu-left" id="playLast"></span>
+        <span class="videoControls glyphicon glyphicon-pause" id="pause"></span>
+        <span class="videoControls glyphicon glyphicon-play" id="startButton"></span>
+        <span class="videoControls glyphicon glyphicon-stop" id="stop"></span>
+        <span class="videoControls glyphicon glyphicon-menu-right" id="playNext"></span>
 
-        <span class="songNav glyphicon glyphicon-menu-left" id="playLast"></span>
-        <span class="songNav glyphicon glyphicon-pause" id="pause"></span>
-        <span class="songNav glyphicon glyphicon-play" id="startButton"></span>
-        <span class="songNav glyphicon glyphicon-stop" id="stop"></span>
-        <span class="songNav glyphicon glyphicon-menu-right" id="playNext"></span>
+        <div class="" id="displayQueue"></div>
       </div>
 
       <!-- Modified Bootstrap Modal From https://getbootstrap.com/docs/4.0/components/modal/ -->
@@ -38,7 +36,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="">Add a song to the jukebox</h5>
+              <h3 class="modal-title" id="">Add a song to the jukebox</h3>
               <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -56,8 +54,9 @@
                 </div>
               </form>
 
-              <form method="get" action="https://music.youtube.com/search">
-                <input type="text" name="q" size="31" maxlength="255" value="" /> <input type="submit" value="search youtube" />
+              <form method="get" action="https://music.youtube.com/search" target="_blank">
+                <input type="text" name="q" size="31" maxlength="255" value="" />
+                <input type="submit" value="search youtube" />
               </form>
 
             </div>

@@ -39,9 +39,7 @@ Jukebox.prototype.displayLibrary = function() {
 
 Jukebox.prototype.addSongToQueue = function(song) {
   this.queue.push(song);
-  var addThisClass = "clickable";
-  var songHtml = `<p id="${song.id}">${song.title}<span class="${addThisClass}">   | remove|</span></p>`;
-  $("#displayQueue").append(songHtml);
+  jukebox.displayQueue();
 }
 
 Jukebox.prototype.removeSongFromQueue = function(id) {
@@ -61,8 +59,9 @@ Jukebox.prototype.displayQueue = function() {
   for (var i=0; i<this.queue.length; i++) {
     songIdNumber = this.queue[i].id;
     songTitle = this.queue[i].title;
-    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}<span class="${addHideClass}">   | remove|</span></p>`;
+    htmlForQueueDisplay += `<p id="${songIdNumber}">${songTitle}<span class="${addHideClass}"> | remove</span></p>`;
   }
+  $("#displayQueue").html(htmlForQueueDisplay);
   return htmlForQueueDisplay;
 }
 
@@ -114,15 +113,9 @@ function onYouTubeIframeAPIReady() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-// event.target.playVideo();
-// comment out to NOT start at load
 }
-// var done = false;
+
 function onPlayerStateChange(event) {
-// if (event.data == YT.PlayerState.PLAYING && !done) {
-//   // $("#output").text(player.getVideoUrl());
-//   done = true;
-// }
   if (event.data == YT.PlayerState.ENDED) {
     console.log("ended");
     jukebox.playThrough();
