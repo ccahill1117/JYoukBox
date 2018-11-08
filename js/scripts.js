@@ -115,7 +115,6 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-// 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
 }
 function onPlayerStateChange(event) {
@@ -166,6 +165,20 @@ $(document).ready(function() {
   var htmlForQueueDisplay = jukebox.displayQueue();
   $("div#displayQueue").html(htmlForQueueDisplay);
 
+
+  $('input#videoId').on('change', function(){
+    var newval = '',
+        $this = $(this);
+    if (newval = $this.val().match(/(\?|&)v=([^&#]+)/)) {
+        $this.val(newval.pop());
+    } else if (newval = $this.val().match(/(\.be\/)+([^\/]+)/)) {
+        $this.val(newval.pop());
+    } else if (newval = $this.val().match(/(\embed\/)+([^\/]+)/)) {
+      $this.val(newval.pop().replace('?rel=0',''));
+    }
+  });
+
+
   $("form#addSongToQueue").submit(function(event) {
     event.preventDefault();
     var songTitle = $("input#songTitle").val();
@@ -178,10 +191,6 @@ $(document).ready(function() {
   })
 
   $("div#player").on('click', '.clickable', function() {
-    console.log("Song clicked!");
-    // var songId = $(this).parent().attr("id");
-    // console.log(songId);
-    // jukebox.removeSongFromQueue(songId);
   })
 
   $("span#pause").click(function() {
